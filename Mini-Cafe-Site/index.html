@@ -1,30 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Café de Palacio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café de Palacio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #8B4513; /* Saddle Brown */
+            --secondary-color: #A0522D; /* Sienna */
+            --light-color: #F5F5DC; /* Beige */
+            --dark-color: #36221D; /* Dark Brown */
+            --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* --- Navigation Bar --- */
+        .navbar {
+            background-color: var(--dark-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--box-shadow);
+        }
+
+        .navbar-nav {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            margin: 0 1.5rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--light-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.3s ease-in-out;
+            padding: 0.5rem;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        /* --- Sections --- */
+        .page-section {
+            background-color: #fff;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: var(--box-shadow);
+            margin-top: 2rem;
+            display: none; /* All sections are hidden by default */
+        }
+
+        .page-section.active {
+            display: block; /* The active section is shown */
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+
+        /* --- Home Section --- */
+        .hero-section {
+            background-image: url('https://placehold.co/900x500/A0522D/F5F5DC?text=Cafe+de+Palacio');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            border-radius: 12px;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .hero-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-style: italic;
+        }
+
+        /* --- Menu List Box Styling (reused) --- */
+        .menu-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .menu-item {
+            background-color: var(--light-color);
+            padding: 1.5rem;
+            border: 2px solid var(--secondary-color);
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item p {
+            font-size: 1rem;
+            color: var(--secondary-color);
+            margin-bottom: 0;
+        }
+
+        .menu-item .price {
+            font-weight: bold;
+            color: var(--primary-color);
+            float: right;
+        }
+
+        /* --- Contact Form Styling --- */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: left;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            color: var(--dark-color);
+            background-color: #f9f9f9;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .cafe-header h1 {
+                font-size: 2.5rem;
+            }
+            .content-section h2 {
+                font-size: 1.8rem;
+            }
+            .menu-list {
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>HOME | Café de Palacio</h1>
-  <P>Your daily dose of caffeine and comfort.</P>
-  <hr>
-  <h2>Our Story:</h2>
-  <p> At Café de Palacio, we believe in great coffee, cozy vibes, and community spirit.
-      Since 2023, we’ve been a neighborhood star. Come for the coffee, stay great.
-  </p>
-  <hr>
-  <h2>Our Menu Preview:</h2>
-   <h3>Café  de Palacio</h3>
-      <p>Homemade daily.  ₱ 109</p>
-    <h3>Blueberry Muffin</h3>
-      <p>Homemade daily.  ₱ 119 </p>
-    <h3>Espresso de Palacio</h3>
-      <p>Rich and smooth, freshly brewed.  ₱ 129</p>
-    <h3>Latte de Palacio</h3>
-      <p>Milk and espresso perfectly blended.  ₱ 149</p>
-    <hr>
-    <p>&copy; 2025 Café de Palacio. All rights reserved. </p>
 
+    <nav class="navbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="#" class="nav-link active" data-section="home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" data-section="menu">Menu</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" data-section="about">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" data-section="contact">Contact</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- --- Home Section --- -->
+        <section id="home" class="page-section active">
+            <header class="cafe-header">
+                <h1>Café de Palacio</h1>
+                <p>A Taste of Elegance in Every Cup</p>
+            </header>
+            <div class="hero-section">
+                <span class="hero-text">Welcome to Our Cafe</span>
+            </div>
+            <p>
+                Step into a world of rich aromas and classic flavors. At Cafe de Palacio, we combine tradition with a modern touch to bring you the finest coffee and pastries.
+            </p>
+        </section>
+
+        <!-- --- Menu Section --- -->
+        <section id="menu" class="page-section">
+            <h2>Our Menu</h2>
+            <div class="menu-list">
+                <!-- Coffee -->
+                <div class="menu-item">
+                    <h3>Espresso de Palacio</h3>
+                    <p class="price">₱190</p>
+                    <p>Rich and concentrated coffee.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Cappuccino de Palacio</h3>
+                    <p class="price">₱270</p>
+                    <p>Espresso with steamed milk foam.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Latte de Palacio</h3>
+                    <p class="price">₱270</p>
+                    <p>Espresso with steamed milk.</p>
+                </div>
+
+                <!-- Pastries -->
+                <div class="menu-item">
+                    <h3>Croissant</h3>
+                    <p class="price">₱170</p>
+                    <p>Buttery, flaky pastry.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Chocolate Cake</h3>
+                    <p class="price">₱313</p>
+                    <p>Decadent chocolate dessert.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Lemon Tart</h3>
+                    <p class="price">₱256</p>
+                    <p>Tangy and sweet.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- About Us Section --- -->
+        <section id="about" class="page-section">
+            <h2>About Us</h2>
+            <p>
+              At Café de Palacio, we believe in great coffee, cozy vibes, and community spirit. Since 2023, we’ve been a neighborhood star. Come for the coffee, stay great.
+            </p>
+        </section>
+
+        <!-- --- Contact Section --- -->
+        <section id="contact" class="page-section">
+            <h2>Contact Us</h2>
+            <p>
+                Have a question or a comment? We'd love to hear from you.
+            </p>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </section>
+    </div>
+
+      <footer>
+    <p>&copy; 2025 Café de Palacio </p>
+  </footer>
+
+    <script>
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.page-section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                // Hide all sections
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+
+                // Deactivate all nav links
+                navLinks.forEach(nav => {
+                    nav.classList.remove('active');
+                });
+
+                // Show the selected section and activate the nav link
+                const targetSection = event.target.getAttribute('data-section');
+                document.getElementById(targetSection).classList.add('active');
+                event.target.classList.add('active');
+            });
+        });
+
+        // Set the menu section as active by default
+        document.getElementById('home').classList.add('active');
+        document.querySelector('[data-section="home"]').classList.add('active');
+    </script>
 </body>
 </html>
