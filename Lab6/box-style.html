@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Styled Content Boxes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f0f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem 1rem;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .box {
+            width: 100%;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 2px solid;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .box:last-child {
+            margin-bottom: 0;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Styles for Box One */
+        .box-one {
+            background-color: #e6f7ff;
+            border-color: #91d5ff;
+            border-style: solid;
+            border-radius: 8px;
+        }
+
+        /* Styles for Box Two */
+        .box-two {
+            background-color: #fffbe6;
+            border-color: #ffe58f;
+            border-style: dashed;
+            border-radius: 20px;
+        }
+
+        /* Styles for Box Three */
+        .box-three {
+            background-color: #e6ffed;
+            border-color: #87e8de;
+            border-style: double;
+            border-radius: 50px;
+        }
+
+        .content-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-text {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            .box {
+                padding: 1.5rem;
+            }
+
+            .content-title {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box box-one">
+            <h2 class="content-title">First Content Box</h2>
+            <p class="content-text">
+                This box features a solid border, a soft blue background, and slightly rounded corners. The padding and margin give it a clean separation from the surrounding elements.
+            </p>
+        </div>
+
+        <div class="box box-two">
+            <h2 class="content-title">Second Content Box</h2>
+            <p class="content-text">
+                Here, we have a dashed border and a light yellow background. The corners are more rounded, and the overall spacing is adjusted to create a distinct visual style.
+            </p>
+        </div>
+
+        <div class="box box-three">
+            <h2 class="content-title">Third Content Box</h2>
+            <p class="content-text">
+                This final box showcases a double border, a gentle green background, and heavily rounded corners, giving it a very soft and modern look. All three boxes demonstrate different styling options.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
