@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Box Style</title>
+
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Internal CSS -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #73abe8;
+      margin: 40px;
+    }
+
+    .box-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .box {
+      width: 250px;
+      padding: 20px;
+      margin: 10px;
+      border-radius: 10px;
+      color: #333;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Three Styled Boxes</h1>
+
+  <div class="box-container">
+    <div class="box box1">
+      <h3>Web Development</h3>
+      <p>This box has a solid blue border and light background with my course subject.</p>
+    </div>
+    <div class="box box2">
+      <h3>BSIE - ICT</h3>
+      <p>This box has a dashed green border and a slightly different background with my course program.</p>
+    </div>
+    <div class="box box3">
+      <h3>3A</h3>
+      <p>This box uses a dotted red border and light yellow with my year section.</p>
+    </div>
+  </div>
+
+</body>
+</html>
