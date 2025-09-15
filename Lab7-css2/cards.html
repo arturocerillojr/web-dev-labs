@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile Cards with Flexbox</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #addaff;
+      margin: 0;
+      padding: 40px;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border: 1px solid #000000;
+      border-radius: 12px;
+      width: 260px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid #000000;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      margin: 10px 0;
+      color: #002fff;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #000000;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-container">
+    <div class="card">
+      <img src="São_Sebastião_Design_Católico-removebg-preview.png" alt="Jane Doe" />
+      <h3>St. Sebastian</h3>
+      <p>He is a patron saint of archers and athletes and of those who desire a saintly death.</p>
+    </div>
+    <div class="card">
+      <img src="470229318_1201860324245185_7265556111475355105_n-removebg-preview.png" alt="John Smith" />
+      <h3>Our Lady of Mt. Carmel</h3>
+      <p> "Those who died wearing the scapular would be freed from the pains of purgatory."</p>
+    </div>
+    <div class="card">
+      <img src="c5be4dd65e5a05af771775ba6e63e210-removebg-preview.png" alt="Emily Davis" />
+      <h3>St. Augustine</h3>
+      <p>One of the prominent 'Fathers’ of the Catholic Church. An extraordinary life with an inspiring conversion experience, and an extraordinary influence with his intellect and texts.</p>
+    </div>
+  </div>
+
+</body>
+</html>
