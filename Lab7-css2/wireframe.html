@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Bean & Brew</title>
+
+  <style>
+    /* Base Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      color: #333;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background-color: #333;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    header p {
+      font-style: inherit;
+      margin-top: 5px;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: #444;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Main Content */
+    main {
+      display: grid;
+      grid-template-columns: 1fr;
+      padding: 30px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+
+    .values {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .value-box {
+      background-color: #eee;
+      padding: 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      flex: 1 1 200px;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #f0f0f0;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+    }
+
+    footer a {
+      color: #333;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>About Bean & Brew</h1>
+    <p>Passion. People. Coffee.</p>
+  </header>
+
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="#">Menu</a>
+    <a href="#">Locations</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <main>
+    <section>
+      <h2>Our Journey</h2>
+      <p>
+        Founded by two sisters with a dream and a love for coffee, 
+        Bean & Brew has grown into a cozy destination for caffeine lovers, 
+        remote workers, and friends catching up.
+      </p>
+    </section>
+
+    <section>
+      <h2>Our Values</h2>
+      <div class="values">
+        <div class="value-box">• Quality Beans</div>
+        <div class="value-box">• Friendly Service</div>
+        <div class="value-box">• Sustainable Sourcing</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><a href="../index.html">Back to Home</a></p>
+  </footer>
+
+</body>
+</html>
