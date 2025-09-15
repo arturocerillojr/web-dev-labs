@@ -1,0 +1,14 @@
+.box1 {
+  background-color: #e3f2fd; /* light blue */
+  border: 2px solid #2196f3; /* solid blue border */
+}
+
+.box2 {
+  background-color: #e8f5e9; /* light green */
+  border: 2px dashed #4caf50; /* dashed green border */
+}
+
+.box3 {
+  background-color: #fff8e1; /* light yellow */
+  border: 2px dotted #f44336; /* dotted red border */
+}

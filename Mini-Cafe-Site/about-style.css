@@ -1,0 +1,116 @@
+/* about-style.css */
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5dc;
+  color: #000000;
+  line-height: 1.6;
+}
+
+/* Header Section */
+.hero {
+  background-color: #36221D;
+  color: #f5f5dc;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.hero h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-style: inherit;
+  font-size: 1.2em;
+}
+
+/* Navigation */
+.nav {
+  background-color: #36221D;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+/* Main Content */
+.main-content {
+  padding: 40px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* Two-column Story Section */
+.story-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.story-text {
+  flex: 1 1 300px;
+}
+
+.story-text h2 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+}
+
+.story-image {
+  flex: 1 1 400px;
+}
+
+.story-image img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Values Section with Grid */
+.values-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.value-box {
+  background-color: #f5f5dc;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  border: 2px solid  #8B4513;
+}
+
+/* Footer */
+footer {
+  background-color: #f5f5f5;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9em;
+}
