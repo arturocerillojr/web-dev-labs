@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Grid Gallery</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      text-align: center;
+      background-color: #222;
+      color: #fff;
+      padding: 2rem 1rem;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr; /* Default: 1 column */
+      gap: 15px;
+      padding: 15px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    /* Tablet: 2 columns */
+    @media (min-width: 600px) {
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Desktop: 3 columns */
+    @media (min-width: 900px) {
+      .gallery {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Large Desktop: 4 columns (optional) */
+    @media (min-width: 1200px) {
+      .gallery {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    footer {
+      text-align: center;
+      background-color: #222;
+      color: #fff;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Responsive Grid Gallery</h1>
+    <p>1 column on mobile, 2 on tablets, 3+ on desktop</p>
+  </header>
+
+  <section class="gallery">
+    <!-- Replace image URLs as needed -->
+    <img src="eee1ed92-7726-47c5-a6eb-919a00d8cf31.jpg" alt="Image 1">
+    <img src="454139178_497439513010160_443227560347726858_n.jpg" alt="Image 2">
+    <img src="caras_coverphoto.png" alt="Image 3">
+    <img src="CARAS_LOGO.jpg" alt="Image 4">
+    <img src="473053782_1152745100227572_7143237181458393814_n.jpg" alt="Image 5">
+    <img src="cb85e53e-e579-439b-ada4-70595e91c6d5.jpg" alt="Image 6">
+    <img src="e83ae6ba-7614-4fa8-8f8f-8f0a9914d82a.jpg" alt="Image 7">
+    <img src="caras-recruitment2025-coverphoto.jpg" alt="Image 8">
+    <img src="14824223-1a79-471c-a378-da9c5c344143.jpg" alt="Image 9">
+  </section>
+
+  <footer>
+    &copy; 2025 My Gallery. All rights reserved.
+  </footer>
+
+</body>
+</html>
