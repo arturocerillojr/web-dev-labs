@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flexible Two-Column Layout</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .text-section, .image-section {
+      padding: 20px;
+    }
+
+    .text-section {
+      background-color: #f4f4f4;
+    }
+
+    .image-section img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Media query for screens 768px and wider */
+    @media (min-width: 768px) {
+      .container {
+        flex-direction: row;
+      }
+
+      .text-section,
+      .image-section {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="text-section">
+      <h2>Join us! Together, we will serve God with gladness.</h2>
+      <p>
+        The Confraternity of Augustinian Recollect Altar Server de San Sebastian (CARAS), inviting you to join us and discover the joy of being a servant of God.
+      </p>
+    </div>
+    <div class="image-section">
+      <img src="e83ae6ba-7614-4fa8-8f8f-8f0a9914d82a.jpg" alt="Placeholder Image" />
+    </div>
+  </div>
+
+</body>
+</html>
