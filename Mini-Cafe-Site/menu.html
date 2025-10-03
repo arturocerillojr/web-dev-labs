@@ -1,32 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu | Café de Palacio</title>
-    <link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu | Café de Palacio</title>
+  <link rel="stylesheet" href="menu-style.css">
 </head>
 <body>
-     <header>
+
+  <header>
     <h1>Café de Palacio</h1>
     <p>Your daily dose of caffeine and comfort.</p> 
   </header>
- <main>
-    <section>
-      <h3>Café  de Palacio</h3>
-      <p>Homemade daily.  ₱ 109</p>
-    <h3>Blueberry Muffin</h3>
-      <p>Homemade daily.  ₱ 119 </p>
-    <h3>Espresso de Palacio</h3>
-      <p>Rich and smooth, freshly brewed.  ₱ 129</p>
-    <h3>Latte de Palacio</h3>
-      <p>Milk and espresso perfectly blended.  ₱ 149</p>
-    </section>
- </main>
 
- <footer>
+  <main class="menu">
+    <!-- Coffee Category -->
+    <section class="menu-category">
+      <h2>Coffee</h2>
+      <div class="menu-item">
+        <h3>Café de Palacio</h3>
+        <p class="description">Homemade daily.</p>
+        <span class="price">₱109</span>
+      </div>
+      <div class="menu-item">
+        <h3>Espresso de Palacio</h3>
+        <p class="description">Rich and smooth, freshly brewed.</p>
+        <span class="price">₱129</span>
+      </div>
+      <div class="menu-item">
+        <h3>Latte de Palacio</h3>
+        <p class="description">Milk and espresso perfectly blended.</p>
+        <span class="price">₱149</span>
+      </div>
+    </section>
+
+    <!-- Bakery Category -->
+    <section class="menu-category">
+      <h2>Bakery</h2>
+      <div class="menu-item">
+        <h3>Blueberry Muffin</h3>
+        <p class="description">Homemade daily.</p>
+        <span class="price">₱119</span>
+      </div>
+      <div class="menu-item">
+        <h3>Chocolate Cake</h3>
+        <p class="description">Decadent chocolate dessert. </p>
+        <span class="price">₱313</span>
+      </div>
+       <div class="menu-item">
+        <h3>Croissant</h3>
+        <p class="description">Buttery, flaky pastry.</p>
+        <span class="price">₱170</span>
+      </div>
+      <!-- Add more baked items here -->
+    </section>
+
+    <!-- Tea Category -->
+    <section class="menu-category">
+      <h2>Tea</h2>
+      <div class="menu-item">
+        <h3>Black Tea</h3>
+        <p class="description">Strong and robust flavor.</p>
+        <span class="price">₱99</span>
+      </div>
+      <div class="menu-item">
+        <h3>Green Tea</h3>
+        <p class="description">Refreshing and packed with antioxidants.</p>
+        <span class="price">₱109</span>
+      </div>
+      <div class="menu-item">
+        <h3>Herbal Tea</h3>
+        <p class="description">Caffeine-free and calming blends.</p>
+        <span class="price">₱119</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
     <p>&copy; 2025 Café de Palacio. All rights reserved.</p>
   </footer>
+
 </body>
 </html>
