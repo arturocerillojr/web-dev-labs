@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile First Flexbox</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .box {
+      padding: 40px;
+      text-align: center;
+      color: white;
+      font-size: 1.5em;
+    }
+
+    .box1 {
+      background-color: #e74c3c;
+    }
+
+    .box2 {
+      background-color: #3498db;
+    }
+
+    .box3 {
+      background-color: #2ecc71;
+    }
+
+    /* Media Query for screens wider than 768px */
+    @media (min-width: 768px) {
+      .container {
+        flex-direction: row;
+      }
+
+      .box {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="box box1">Box 1</div>
+    <div class="box box2">Box 2</div>
+    <div class="box box3">Box 3</div>
+  </div>
+
+</body>
+</html>
