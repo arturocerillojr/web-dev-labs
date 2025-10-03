@@ -1,0 +1,21 @@
+/* Optional: Custom card-like styling for the form */
+.custom-form-box {
+  border-left: 5px solid #6f4e37;
+}
+
+/* Headings */
+h2 {
+  font-family: 'Georgia', serif;
+  letter-spacing: 1px;
+}
+
+/* Button enhancements */
+.btn-primary {
+  background-color: #6f4e37;
+  border-color: #6f4e37;
+}
+
+.btn-primary:hover {
+  background-color: #5a3e2e;
+  border-color: #5a3e2e;
+}
