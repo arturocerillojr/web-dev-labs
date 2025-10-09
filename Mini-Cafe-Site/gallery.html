@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery | Café de Palacio</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+     <!-- Custom CSS Variables -->
+  <style>
+    :root {
+      --primary-color: #8B4513; /* Saddle Brown */
+      --secondary-color: #A0522D; /* Sienna */
+      --light-color: #F5F5DC; /* Beige */
+      --dark-color: #36221D; /* Dark Brown */
+      --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      background-color: var(--light-color);
+      color: var(--dark-color);
+    }
+
+    .custom-header {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .card {
+      box-shadow: var(--box-shadow);
+      border: none;
+    }
+
+    .card-title {
+      color: var(--secondary-color);
+    }
+
+  :root {
+    --primary-color: #8B4513;      /* Saddle Brown */
+    --secondary-color: #A0522D;    /* Sienna */
+    --light-color: #F5F5DC;        /* Beige */
+    --dark-color: #36221D;         /* Dark Brown */
+    --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .custom-gallery-header {
+    background-color: var(--dark-color);   /* Dark Brown background */
+    color: var(--light-color);             /* Light Beige text */
+    box-shadow: var(--box-shadow);         /* Subtle shadow */
+  }
+
+  /* Optional: Emphasize h2 with a secondary accent color */
+  .custom-gallery-header h2 {
+    color: var(--secondary-color);
+  }
+
+  /* Optional: Slightly reduce the paragraph text contrast */
+  .custom-gallery-header p {
+    color: var(--light-color);
+    opacity: 0.9;
+  }
+</style>
+
+</head>
+<body>
+
+ <!-- Gallery Header -->
+<header class="custom-gallery-header text-center py-4 mb-4">
+  <h2>Gallery de Palacio</h2>
+  <p class="mb-0">A Taste of Elegance in Every Cup</p>
+</header>
+
+
+  <!-- Gallery Grid -->
+  <div class="container">
+    <div class="row">
+
+      <!-- Image Card 1 -->
+      <div class="col-12 col-md-4 mb-4">
+        <div class="card p-3 h-100">
+          <img src="cafedepalacio.jpg" class="card-img-top img-fluid" alt="Coffee 1">
+          <div class="card-body">
+            <h5 class="card-title">Café de Palacio</h5>
+            <p class="card-text">Our signature roast served hot daily.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image Card 2 -->
+      <div class="col-12 col-md-4 mb-4">
+        <div class="card p-3 h-100">
+          <img src="cafe-de-palacio.jpg" class="card-img-top img-fluid" alt="Interior 1">
+          <div class="card-body">
+            <h5 class="card-title">Relaxing Ambience</h5>
+            <p class="card-text">Enjoy your coffee in our cozy space.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image Card 3 -->
+      <div class="col-12 col-md-4 mb-4">
+        <div class="card p-3 h-100">
+          <img src="pastriesdepalacio.jpg" class="card-img-top img-fluid" alt="Pastry 1">
+          <div class="card-body">
+            <h5 class="card-title">Delicious Pastries</h5>
+            <p class="card-text">Baked fresh every morning with love.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (optional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
