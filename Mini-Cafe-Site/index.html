@@ -221,6 +221,19 @@
                 gap: 1rem;
             }
         }
+        .gallery-btn {
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.gallery-btn:hover {
+  background-color: var(--primary-color);
+  transform: scale(1.05);
+  color: var(--light-color);
+}
+
 
     </style>
 </head>
@@ -293,103 +306,45 @@
         </section>
     </div>
 
-     <!-- --- Menu Section: --- -->
-    <!-- Coffee Category -->
-    <section class="menu-category">
-                <p>A Taste of Elegance in Every Cup</p>
-            </header>
-        <link rel="stylesheet" href="menu-style.css">
-    <h2>Coffee</h2>
-      <div class="menu-item">
-        <h3>Café de Palacio</h3>
-        <p class="description">Homemade daily.</p>
-        <span class="price">₱109</span>
-        <button class="order-btn">Order Now</button>
-      </div>
-      <div class="menu-item">
-        <h3>Espresso de Palacio</h3>
-        <p class="description">Rich and smooth, freshly brewed.</p>
-        <span class="price">₱129</span>
-        <button class="order-btn">Order Now</button>
-      </div>
-      <div class="menu-item">
-        <h3>Latte de Palacio</h3>
-        <p class="description">Milk and espresso perfectly blended.</p>
-        <span class="price">₱149</span>
-        <button class="order-btn">Order Now</button>
-      </div>
-    </section>
+<!-- --- Menu Section: --- -->
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="menu-style.css">
+</head>
+  <main class="container my-5">
+    <h2 class="text-center mb-4">Our Menu:</h2>
 
-    <!-- Bakery Category -->
-    <section class="menu-category">
-      <h2>Bakery</h2>
-      <div class="menu-item">
-        <h3>Blueberry Muffin</h3>
-        <p class="description">Homemade daily.</p>
-        <span class="price">₱119</span>
-        <button class="order-btn">Order Now</button>
-      </div>
-      <div class="menu-item">
-        <h3>Chocolate Cake</h3>
-        <p class="description">Decadent chocolate dessert.</p>
-        <span class="price">₱313</span>
-        <button class="order-btn">Order Now</button>
-      </div>
-      <div class="menu-item">
-        <h3>Croissant</h3>
-        <p class="description">Buttery, flaky pastry.</p>
-        <span class="price">₱170</span>
-        <button class="order-btn">Order Now</button>
-      </div>
-    </section>
+    <!-- Empty container for dynamic menu items -->
+    <div id="menu-list" class="row g-4">
+      <!-- Menu cards will be inserted here dynamically -->
+    </div>
 
-    <!-- Tea Category -->
-    <section class="menu-category">
-      <h2>Tea</h2>
-      <div class="menu-item">
-        <h3>Black Tea</h3>
-        <p class="description">Strong and robust flavor.</p>
-        <span class="price">₱99</span>
-        <button class="order-btn">Order Now</button>
-      </div>
-      <div class="menu-item">
-        <h3>Green Tea</h3>
-        <p class="description">Refreshing and packed with antioxidants.</p>
-        <span class="price">₱109</span>
-        <button class="order-btn">Order Now</button>
-      </div>
-      <div class="menu-item">
-        <h3>Herbal Tea</h3>
-        <p class="description">Caffeine-free and calming blends.</p>
-        <span class="price">₱119</span>
-        <button class="order-btn">Order Now</button>
-      </div>
-    </section>
-
-    <!-- Order Summary -->
-    <section class="order-summary">
+    <!-- Order Summary Section -->
+    <section class="order-summary mt-5">
       <h2>Your Order</h2>
-      <ul id="order-list">
-        <!-- Ordered items will appear here -->
-      </ul>
-    </section>
+      <ul id="order-list" class="list-group"></ul>
 
-    <!-- JavaScript -->
-  <script src="menu.js"></script>
+    </section>
   </main>
-  
+
+
+  <!-- JavaScript -->
+  <script src="menu.js"></script>
+
 
 
   <!-- Enhanced Button with Icon -->
 
 <div class="text-center my-4">
-  <a href="gallery.html" class="btn btn-lg px-4 py-2 colo fw-bold shadow-sm d-inline-flex align-items-center gap-2 gallery-btn">
+  <button 
+    class="btn btn-lg px-4 py-2 fw-bold shadow-sm d-inline-flex align-items-center gap-2 gallery-btn"
+    onclick="window.location.href='gallery.html';"
+  >
     <span>View Gallery de Palacio</span>
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
       <path d="M9.5 2a.5.5 0 0 1 .5.5V3h1a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h1v-.5a.5.5 0 0 1 .5-.5h3zM8 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
       <path d="M8 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
     </svg>
-  </a>
+  </button>
 </div>
 
 
@@ -410,10 +365,12 @@
         </div>
     </section>
 
-
-      <footer>
-    <p>&copy; 2025 Café de Palacio </p>
+      <p>&copy; 2025 Café de Palacio. All rights reserved.</p>
   </footer>
+
+
+
+
 
     <script>
         const navLinks = document.querySelectorAll('.nav-link');
@@ -444,5 +401,7 @@
         document.getElementById('home').classList.add('active');
         document.querySelector('[data-section="home"]').classList.add('active');
     </script>
+
+
 </body>
 </html>
