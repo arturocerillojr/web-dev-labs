@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity 6: Visual Wireframe to Code</title>
+    <style>
+        /* CSS for table styling and responsiveness */
+        body {
+            /* 4. Change the background color of the page using document.body.style.backgroundColor */
+            background-color: lightgoldenrodyellow;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9em;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+
+        table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        table th,
+        table td {
+            padding: 12px 15px;
+            border: 1px solid #dddddd;
+        }
+
+        table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+
+        /* Responsive layout using media query */
+        /* Hides the table headers and changes display for small screens */
+        @media screen and (max-width: 600px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr {
+                border: 1px solid #ccc;
+                margin-bottom: 10px;
+            }
+
+            td {
+                /* Behave like a row */
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+            }
+
+            td:before {
+                /* Now like a table header */
+                position: absolute;
+                /* Top/left values increase specificity */
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+                /* Use the data-label attribute to show header names */
+                content: attr(data-label);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Visual Wireframe to Code</h2>
+
+    <div id="table-container">
+        <table id="dynamicTable">
+            </table>
+    </div>
+
+    <script>
+        // 1. Based on the visual wireframe (table with 3 rows auto-generated from an array), 
+        // create a responsive table layout.
+
+        // Array containing the data (each object represents a row)
+        // 3. Each row should contain name, quantity, and price.
+        const inventoryData = [
+            { name: "Laptop", quantity: 15, price: 999.99 },
+            { name: "Monitor", quantity: 20, price: 199.50 },
+            { name: "Keyboard", quantity: 50, price: 75.00 }
+        ];
+
+        // 2. In JS, use a loop to create 3 <tr> rows inside <table><tbody>...</tbody></table>
+        function generateTable(dataArray) {
+            const table = document.getElementById('dynamicTable');
+            const tableBody = table.createTBody(); // Creates the <tbody> element
+            
+            // Create Table Header (thead)
+            const tableHead = table.createTHead();
+            const headerRow = tableHead.insertRow();
+            
+            // Assuming all objects in the array have the same keys, use the first object's keys for headers
+            const headers = Object.keys(dataArray[0]); 
+            headers.forEach(headerText => {
+                let th = document.createElement('th');
+                th.textContent = headerText.charAt(0).toUpperCase() + headerText.slice(1); // Capitalize first letter
+                headerRow.appendChild(th);
+            });
+
+            // Create Table Rows (tr) for data
+            dataArray.forEach(rowData => {
+                let row = tableBody.insertRow();
+                headers.forEach(key => {
+                    let cell = row.insertCell();
+                    cell.textContent = rowData[key];
+                    // Add data-label for responsiveness on small screens (media query uses this)
+                    cell.setAttribute('data-label', key.charAt(0).toUpperCase() + key.slice(1));
+                });
+            });
+        }
+
+        // Call the function to generate the table
+        generateTable(inventoryData);
+
+        // Optional: Change the background color (as per step 4)
+        // This is often done via CSS, but the instruction specifically mentions JS.
+        document.body.style.backgroundColor = 'lightgray'; // Change to a different color to show JS implementation
+        
+        // 4. Save as dynamic-table.html, push to GitHub.
+    </script>
+
+</body>
+</html>
