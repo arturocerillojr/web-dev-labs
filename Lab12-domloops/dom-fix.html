@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error Identification</title>
+</head>
+<body>
+
+    <h1 id="title">Welcome!</h1>
+    
+    <button onclick="changeTitle('change title')">Button</button> 
+
+    <script>
+        // Corrected: Using document.getElementById()
+        document.getElementById("title").innerHTML = "Updated!";
+        
+        // Note: The function 'changeTitle' is not defined in the snippet, 
+        // so the button's onclick will still produce an error. 
+        // A complete fix for the button (not required by the prompt) would look like:
+        /*
+        function changeTitle(newText) {
+            document.getElementById("title").innerText = newText;
+        }
+        */
+    </script>
+
+</body>
+</html>
