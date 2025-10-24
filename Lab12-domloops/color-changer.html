@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dyanamic Background Changer</title>
+</head>
+<body>
+  <h1>Background Color Changer</h1>
+
+  <!-- Dropdown for selecting a color -->
+  <label for="color-select">Choose a color:</label>
+  <select id="color-select">
+    <option value="White">White</option>
+    <option value="lightblue">Light Blue</option>
+    <option value="lightgreen">Light Green</option>
+  </select>
+
+  <!-- Button to change background -->
+  <button id="change-color-btn">Change Background</button>
+
+  <script>
+    // Function to change the background color
+    function changeBackgroundColor() {
+      const colorSelect = document.getElementById("color-select");
+      const selectedColor = colorSelect.value;
+
+      // Change the background color of the page
+      document.body.style.backgroundColor = selectedColor;
+    }
+
+    // Add event listener to the button
+    const button = document.getElementById("change-color-btn");
+    button.addEventListener("click", changeBackgroundColor);
+  </script>
+</body>
+</html>
