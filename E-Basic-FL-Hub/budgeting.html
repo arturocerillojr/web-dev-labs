@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Budgeting Guide | Smart Financial Planning</title>
+
+  <style>
+    /* === Light Theme === */
+:root {
+  --bg-color: #fdfdfd;
+  --text-color: #212121;
+  --primary: #0d6efd;
+  --secondary: #0b5ed7;
+  --accent: #198754;
+  --card-bg: #ffffff;
+}
+
+/* === Dark Theme === */
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --primary: #0d6efd;
+  --secondary: #0b5ed7;
+  --accent: #198754;
+  --card-bg: #1e1e1e;
+}
+
+/* === Header gradient === */
+header {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+}
+
+/* === Navbar buttons === */
+nav a {
+  color: white;
+}
+nav a:hover,
+nav a.active {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+/* === Buttons === */
+form button, #backToTop, #themeToggle {
+  background-color: var(--primary);
+  color: white;
+}
+form button:hover, #backToTop:hover {
+  background-color: var(--secondary);
+}
+
+/* === Base Layout === */
+body {
+  margin: 0;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  scroll-behavior: smooth;
+  transition: background-color 0.4s, color 0.4s;
+  padding-top: 100px;
+}
+
+/* === Header === */
+header {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+header p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* === Theme Toggle Button === */
+#themeToggle {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 50%;
+  color: white;
+  font-size: 18px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#themeToggle:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* === Navbar === */
+nav {
+  background-color: var(--primary);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  position: sticky;
+  top: 80px;
+  z-index: 999;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+/* === Main === */
+main {
+  max-width: 960px;
+  margin: 2rem auto;
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.4s;
+}
+
+h2 {
+  color: var(--primary);
+  border-left: 5px solid var(--accent);
+  padding-left: 10px;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+p, ul, ol {
+  line-height: 1.7;
+}
+
+ul li, ol li {
+  margin-bottom: 0.6rem;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-top: 1rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+iframe {
+  width: 100%;
+  height: 400px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 1rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* === Form === */
+form label {
+  font-weight: 600;
+}
+
+form input,
+form textarea {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.75rem;
+  transition: border-color 0.3s;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 6px var(--accent);
+}
+
+form button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+form button:hover {
+  background-color: var(--secondary);
+  transform: translateY(-2px);
+}
+
+/* === Back to Top === */
+#backToTop {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 1000;
+  transition: 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+#backToTop:hover {
+  background-color: var(--secondary);
+  transform: translateY(-3px);
+}
+
+/* === Floating Back to Home Button === */
+#backHomeBtn {
+  display: block;
+  position: fixed;
+  bottom: 90px;
+  right: 30px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 1000;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#backHomeBtn:hover {
+  background-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+/* === Fade-in animation === */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Footer === */
+footer {
+  background-color: var(--secondary);
+  color: white;
+  text-align: center;
+  padding: 1.2rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  iframe {
+    height: 260px;
+  }
+
+  main {
+    padding: 1.5rem;
+  }
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Smart Budgeting</h1>
+    <p>Your guide to taking control of your finances!</p>
+    <button id="themeToggle">🌙</button>
+  </header>
+
+  <nav>
+    <a href="about.html">← Home</a>
+    <a href="#what-is-budgeting" class="active">What is Budgeting?</a>
+    <a href="#why-budgeting">Why It Matters</a>
+    <a href="#how-to-budget">How to Budget</a>
+    <a href="#video">Video</a>
+    <a href="#map">Find Help</a>
+    <a href="#form">Contact</a>
+  </nav>
+
+  <main>
+    <section id="what-is-budgeting">
+      <h2>What is Budgeting?</h2>
+      <p>Budgeting is the process of planning how to spend your money. It helps you prioritize expenses, save for future goals, and stay in control of your financial life.</p>
+      <img src="budgeting.jpg" alt="Budgeting image">
+    </section>
+
+    <section id="why-budgeting">
+      <h2>Why Budgeting Matters</h2>
+      <ul>
+        <li>Helps track income and expenses</li>
+        <li>Prevents overspending and debt accumulation</li>
+        <li>Encourages saving and financial independence</li>
+        <li>Promotes long-term financial stability</li>
+      </ul>
+      <img src="finance.jpg" alt="Financial planning">
+    </section>
+
+    <section id="how-to-budget">
+      <h2>How to Create a Budget</h2>
+      <ol>
+        <li>Calculate your total monthly income</li>
+        <li>List all your expenses</li>
+        <li>Classify expenses as fixed, variable, or discretionary</li>
+        <li>Set spending limits for each category</li>
+        <li>Track progress and adjust as needed</li>
+      </ol>
+      <img src="budgetworksheet.jpg" alt="Budget worksheet">
+    </section>
+
+    <section id="video">
+      <h2>Watch: Budgeting for Beginners</h2>
+      <iframe src="https://www.youtube.com/embed/6Ib-bdko5cE?si=k2a7gjDQtWUxuppC" title="Budgeting Video" allowfullscreen></iframe>
+      <p style="font-size: 0.9rem; color: #777;">Credit: Federal Student Aid</p>
+    </section>
+
+    <section id="map">
+      <h2>Find a Budgeting Counselor Near You</h2>
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.053053310849!2d120.98713687541897!3d14.596052785889766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9f64e3e10c7%3A0xe9a859a1a53fd908!2s438%20J%20Nepomuceno%20St%2C%20Quiapo%2C%20Manila!5e0!3m2!1sen!2sph!4v1758720421488!5m2!1sen!2sph"
+        allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
+    <section id="form">
+      <h2>Get in Touch / Subscribe for Budgeting Tips</h2>
+      <form>
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="message">Your Question or Comment</label>
+        <textarea id="message" name="message" rows="5" placeholder="Type here..."></textarea>
+
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+
+    <div class="back-home">
+      <a href="about.html">&larr; Back to Home Page</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Financial Literacy. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" title="Back to Top">↑</button>
+  <!-- Floating Back Home Button -->
+  <button id="backHomeBtn" onclick="location.href='about.html'">🏠 Home</button>
+
+  <script>
+    const backToTopBtn = document.getElementById("backToTop");
+    const themeToggle = document.getElementById("themeToggle");
+
+    // Back to top visibility
+    window.addEventListener("scroll", () => {
+      backToTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+    });
+
+    backToTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Theme toggle functionality
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+      document.documentElement.setAttribute("data-theme", "dark");
+      themeToggle.textContent = "☀️";
+    }
+
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      if (currentTheme === "dark") {
+        document.documentElement.removeAttribute("data-theme");
+        themeToggle.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+      } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+        themeToggle.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+      }
+    });
+
+    // Fade-in on scroll
+    const faders = document.querySelectorAll("section, img, iframe");
+    const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      fader.classList.add('fade-in');
+      appearOnScroll.observe(fader);
+    });
+  </script>
+</body>
+</html>

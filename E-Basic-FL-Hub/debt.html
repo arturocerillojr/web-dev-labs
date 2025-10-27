@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Understanding Debt</title>
+  <style>
+    :root {
+      --primary-color: #1E3A8A;
+      --secondary-color: #2563EB;
+      --accent-color: #F59E0B;
+      --bg-color: #F9FAFB;
+      --card-bg-color: #FFFFFF;
+      --text-color: #111827;
+      --subtext-color: #6B7280;
+      --btn-hover: #1D4ED8;
+      --gradient-header: linear-gradient(135deg, #1E3A8A, #2563EB);
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #111827;
+      --card-bg-color: #1F2937;
+      --text-color: #F9FAFB;
+      --subtext-color: #9CA3AF;
+      --primary-color: #3B82F6;
+      --secondary-color: #60A5FA;
+      --accent-color: #FBBF24;
+      --btn-hover: #2563EB;
+      --gradient-header: linear-gradient(135deg, #3B82F6, #60A5FA);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Gradient Header */
+    header {
+      background: var(--gradient-header);
+      color: white;
+      padding: 4rem 1rem 2rem 1rem;
+      text-align: center;
+      position: relative;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* Interactive Navigation */
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background: var(--secondary-color);
+      padding: 0.75rem 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0.5rem 1rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    nav a:hover {
+      background-color: rgba(255,255,255,0.15);
+      transform: translateY(-3px);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: var(--card-bg-color);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Section Separators */
+    section {
+      margin-bottom: 4rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #E5E7EB;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 4px;
+      background: var(--accent-color);
+      left: 0;
+      bottom: -10px;
+      border-radius: 2px;
+    }
+
+    p, ul {
+      font-size: 1rem;
+      color: var(--text-color);
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+
+    ul li {
+      margin-bottom: 0.6rem;
+      transition: color 0.3s;
+    }
+
+    ul li:hover {
+      color: var(--accent-color);
+    }
+
+    iframe, img {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      margin-top: 1rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    iframe:hover, img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .back-home {
+      text-align: center;
+      margin: 3rem 0 1rem;
+    }
+
+    .back-home a {
+      background-color: var(--accent-color);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+
+    .back-home a:hover {
+      background-color: #D97706;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: var(--secondary-color);
+      color: white;
+      margin-top: 2rem;
+      font-size: 0.95rem;
+    }
+
+    /* Buttons */
+    #backToTop, #themeToggle {
+      position: fixed;
+      bottom: 30px;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      color: white;
+      transition: background-color 0.3s, transform 0.2s;
+      z-index: 1000;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    #backToTop {
+      right: 30px;
+      background-color: var(--primary-color);
+    }
+
+    #themeToggle {
+      left: 30px;
+      background-color: var(--primary-color);
+    }
+
+    #backToTop:hover, #themeToggle:hover {
+      background-color: var(--btn-hover);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+      }
+      iframe { height: 300px; }
+      nav a { margin: 0.5rem 0; }
+      .back-home { margin: 2rem 0; }
+      #themeToggle { left: 50%; transform: translateX(-50%); bottom: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Understanding Debt</h1>
+    <p>Learn what debt is, how it works, and how to manage it responsibly.</p>
+  </header>
+
+  <nav>
+    <a href="#what-is-debt">What is Debt</a>
+    <a href="#types-of-debt">Types of Debt</a>
+    <a href="#managing-debt">Managing Debt</a>
+    <a href="#video">Video</a>
+    <a href="#map">Map</a>
+  </nav>
+
+  <main>
+    <section id="what-is-debt">
+      <h2>What is Debt?</h2>
+      <p>Debt is money borrowed by one party from another, typically under the agreement to repay with interest. It is a common financial tool used by individuals, businesses, and governments.</p>
+    </section>
+
+    <section id="types-of-debt">
+      <h2>Types of Debt</h2>
+      <ul>
+        <li><strong>Credit Card Debt:</strong> Revolving debt with high-interest rates.</li>
+        <li><strong>Student Loans:</strong> Borrowed money to pay for education.</li>
+        <li><strong>Mortgages:</strong> Long-term loans for purchasing property.</li>
+        <li><strong>Auto Loans:</strong> Loans for buying vehicles.</li>
+        <li><strong>Personal Loans:</strong> Unsecured loans for various uses.</li>
+      </ul>
+    </section>
+
+    <section id="managing-debt">
+      <h2>Managing Debt</h2>
+      <ul>
+        <li>Make consistent, on-time payments.</li>
+        <li>Prioritize high-interest debt first.</li>
+        <li>Consolidate or refinance when appropriate.</li>
+        <li>Avoid taking on unnecessary new debt.</li>
+        <li>Create a budget and stick to it.</li>
+      </ul>
+    </section>
+
+    <section id="video">
+      <h2>Debt Explained (Video)</h2>
+      <iframe 
+        src="https://www.youtube.com/embed/ho0V6Mhtvjo?si=GUGsRfdx0BL1FEN7" 
+        title="YouTube video player" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen></iframe>
+      <p style="font-size:0.9rem;color:var(--subtext-color);">Credits: MoneyAcademy</p>
+    </section>
+
+    <section id="map">
+      <h2>Find a Credit Counselor Near You</h2>
+      <p>Use the map below to locate financial counseling services near your area:</p>
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.053053310849!2d120.98713687541897!3d14.596052785889766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9f64e3e10c7%3A0xe9a859a1a53fd908!2s438%20J%20Nepomuceno%20St%2C%20Quiapo%2C%20Manila%2C%201001%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1758720421488!5m2!1sen!2sph" 
+        height="450" loading="lazy"></iframe>
+    </section>
+
+    <div class="back-home">
+      <a href="about.html">&larr; Back to Home Page</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Financial Literacy. All rights reserved.</p>
+  </footer>
+
+  <button id="backToTop" title="Back to Top">↑ Top</button>
+  <button id="themeToggle">🌙</button>
+
+  <script>
+    const backToTopBtn = document.getElementById("backToTop");
+    window.onscroll = function () {
+      backToTopBtn.style.display = (window.scrollY > 300) ? "block" : "none";
+    };
+    backToTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+    const faders = document.querySelectorAll("section, iframe, img");
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+    faders.forEach(fader => appearOnScroll.observe(fader));
+
+    const themeToggle = document.getElementById("themeToggle");
+    themeToggle.addEventListener("click", () => {
+      if(document.documentElement.getAttribute("data-theme") === "dark") {
+        document.documentElement.removeAttribute("data-theme");
+        themeToggle.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+      } else {
+        document.documentElement.setAttribute("data-theme","dark");
+        themeToggle.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+      }
+    });
+
+    if(localStorage.getItem("theme") === "dark") {
+      document.documentElement.setAttribute("data-theme","dark");
+      themeToggle.textContent = "☀️";
+    }
+  </script>
+</body>
+</html>

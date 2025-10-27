@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>| Understanding Banking</title>
+  <style>
+    /* Reset & Base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(to right, #003366, #004080);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    /* Nav */
+    nav {
+      background-color: #002244;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+      padding: 0.25rem 0.5rem;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    nav a:hover, nav a.active {
+      background-color: rgba(255,255,255,0.25);
+      transform: translateY(-3px);
+      border-radius: 4px;
+    }
+
+    /* Main content */
+    main {
+      max-width: 960px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      border-radius: 8px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease, background 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    /* Section gradients */
+    #what-is-banking { background: linear-gradient(to right, #e3f2fd, #ffffff); }
+    #services { background: linear-gradient(to right, #f1f8e9, #ffffff); }
+    #how-to-choose { background: linear-gradient(to right, #fff3e0, #ffffff); }
+    #video { background: linear-gradient(to right, #fce4ec, #ffffff); }
+    #map { background: linear-gradient(to right, #ede7f6, #ffffff); }
+    #contact { background: linear-gradient(to right, #fffde7, #ffffff); }
+
+    section.visible { opacity: 1; transform: translateY(0); }
+
+    h2 { color: #003366; margin-bottom: 1rem; }
+
+    img, iframe {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-top: 1rem;
+    }
+
+    ul li { margin-bottom: 0.5rem; }
+
+    /* Back to Home */
+    .back-home { text-align: center; margin: 3rem 0 1rem; }
+    .back-home a {
+      background-color: #003366;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .back-home a:hover { background-color: #001d3d; }
+
+    /* Footer */
+    footer { background-color: #002244; color: white; text-align: center; padding: 1rem; }
+
+    /* Back to Top */
+    #backToTop {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #003366;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    #backToTop:hover { background-color: #001d3d; transform: scale(1.1); }
+
+    /* Forms */
+    form { display: grid; gap: 1rem; }
+    label { font-weight: bold; }
+    input, textarea {
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      width: 100%;
+    }
+    button[type="submit"] {
+      background-color: #003366;
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    button[type="submit"]:hover { background-color: #001d3d; }
+
+    @media (max-width: 600px) {
+      nav { flex-direction: column; align-items: center; }
+      nav a { margin: 0.5rem 0; }
+      iframe { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Banking</h1>
+    <p>Understand how banks work and how to use them wisely.</p>
+  </header>
+
+  <nav>
+    <a href="#what-is-banking">What is Banking</a>
+    <a href="#services">Services</a>
+    <a href="#how-to-choose">Choosing a Bank</a>
+    <a href="#video">Video</a>
+    <a href="#map">Find a Branch</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <main>
+    <section id="what-is-banking">
+      <h2>What is Banking?</h2>
+      <p>Banking refers to managing money and providing services like savings, loans, and digital access to funds. Banks help people securely save, invest, and borrow money for personal and business needs.</p>
+      <img src="banking.jpg" alt="Banking Basics">
+    </section>
+
+    <section id="services">
+      <h2>Common Banking Services</h2>
+      <ul>
+        <li><strong>Savings Accounts:</strong> Store money safely and earn interest.</li>
+        <li><strong>Checking Accounts:</strong> Daily use accounts with ATM/debit access.</li>
+        <li><strong>Loans & Mortgages:</strong> Funds for cars, homes, or education.</li>
+        <li><strong>Credit Cards:</strong> Borrow short-term and build credit.</li>
+        <li><strong>Mobile Banking:</strong> Manage accounts from your phone or computer.</li>
+      </ul>
+      <img src="bank services.jpg" alt="Bank Services">
+    </section>
+
+    <section id="how-to-choose">
+      <h2>How to Choose the Right Bank</h2>
+      <p>Consider location, fees, interest rates, mobile features, and customer service. Compare online banks with local branches for better financial convenience.</p>
+      <img src="core banking.jpg" alt="Choosing a Bank">
+    </section>
+
+    <section id="video">
+      <h2>Watch: Banking Explained</h2>
+      <iframe src="https://www.youtube.com/embed/fTTGALaRZoc?si=Ds2BRqn4-fPbWHI0" title="YouTube video player" allowfullscreen></iframe>
+      <p>Crdts: Kurzgesagt - In a Nutshell</p>
+    </section>
+
+    <section id="map">
+      <h2>Find a Local Bank Branch</h2>
+      <p>Use the map below to locate bank branches or ATMs near you.</p>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.053053310849!2d120.98713687541897!3d14.596052785889766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9f64e3e10c7%3A0xe9a859a1a53fd908!2s438%20J%20Nepomuceno%20St%2C%20Quiapo%2C%20Manila%2C%201001%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1758720421488!5m2!1sen!2sph" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
+    <section id="contact">
+      <h2>Subscribe or Contact Us</h2>
+      <form>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="message">Message or Inquiry</label>
+        <textarea id="message" name="message" rows="5" placeholder="Your message..."></textarea>
+
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+
+    <div class="back-home">
+      <a href="about.html">&larr; Back to Home Page</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Financial Literacy. All rights reserved.</p>
+  </footer>
+
+  <button id="backToTop" title="Back to Top">↑</button>
+
+  <script>
+    const backToTopBtn = document.getElementById("backToTop");
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav a');
+
+    // Back to top button
+    window.addEventListener("scroll", () => {
+      backToTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+
+      sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        if(rect.top <= window.innerHeight / 2 && rect.bottom >= 100) {
+          navLinks.forEach(link => link.classList.remove("active"));
+          navLinks[index].classList.add("active");
+        }
+      });
+
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if(rect.top <= window.innerHeight - 100) section.classList.add('visible');
+      });
+    });
+
+    backToTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Smooth scroll for nav
+    navLinks.forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>| Saving Money</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-H+K7U5CnXl1h5ywQJ3O7xXJqIu0N7pGz+3Gt+Jk4O+P6+bW+VqXr+JwT7d9H6X1rFDFbDQfs5eOd0GIRd2U9Yw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* Base */
+    * { margin:0; padding:0; box-sizing:border-box; transition: background 0.3s, color 0.3s; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:#f4f6f8; color:#333; line-height:1.6; }
+
+    /* Dark/Light mode variables */
+    body.light { --bg:#f4f6f8; --sec-bg:#fff; --primary:#1565c0; --secondary:#0d47a1; --text:#333; --text-alt:#555; }
+    body.dark  { --bg:#121212; --sec-bg:#1e1e1e; --primary:#1565c0; --secondary:#0d47a1; --text:#eee; --text-alt:#aaa; }
+
+    body { background: var(--bg); color: var(--text); }
+
+    /* Header */
+    header { background: linear-gradient(to right, var(--primary), var(--secondary)); color:white; padding:3rem 1rem; text-align:center; }
+    header h1 { font-size:2.5rem; margin-bottom:0.5rem; }
+
+    /* Dark/Light toggle button */
+    #modeToggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1000;
+      font-size:18px;
+    }
+    #modeToggle:hover { background: var(--secondary); }
+
+    /* Nav */
+    nav {
+      background-color: var(--secondary);
+      display:flex; justify-content:center; flex-wrap:wrap; padding:1rem;
+      position: sticky; top:0; z-index: 999; box-shadow:0 4px 6px rgba(0,0,0,0.1);
+    }
+    nav a { color:white; text-decoration:none; margin:0 1rem; font-weight:bold; padding:0.25rem 0.5rem; transition:background 0.3s, transform 0.3s; }
+    nav a:hover, nav a.active { background: rgba(255,255,255,0.25); border-radius:4px; transform:translateY(-3px); }
+
+    /* Main sections */
+    main { max-width:960px; margin:auto; padding:2rem 1rem; }
+    section { margin-bottom:3rem; padding:2rem; border-radius:8px; background:var(--sec-bg); box-shadow:0 4px 10px rgba(0,0,0,0.05); opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease, background 0.3s ease; }
+    section.visible { opacity:1; transform:translateY(0); }
+
+    h2 { color: var(--secondary); margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem; }
+
+    /* Tip cards */
+    .tips-container { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1rem; margin-top:1rem; }
+    .tip-card {
+      background: var(--bg);
+      padding:1rem 1.25rem;
+      border-radius:8px;
+      box-shadow:0 4px 8px rgba(0,0,0,0.1);
+      display:flex; align-items:flex-start; gap:0.75rem;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+    .tip-card:hover { transform: translateY(-5px); box-shadow:0 6px 15px rgba(0,0,0,0.15); background: var(--sec-bg); }
+    .tip-card i { font-size:1.5rem; color:var(--primary); margin-top:4px; }
+    .tip-card p { margin:0; color: var(--text-alt); }
+
+    img, iframe { width:100%; border-radius:6px; margin-top:1rem; }
+
+    /* Forms */
+    form { display:grid; gap:1rem; }
+    label { font-weight:bold; }
+    input, textarea { padding:0.75rem; border:1px solid #ccc; border-radius:4px; font-size:1rem; width:100%; background: var(--bg); color: var(--text); }
+    button[type="submit"] { background: var(--primary); color:white; padding:0.75rem; border:none; border-radius:4px; cursor:pointer; font-size:1rem; transition: background 0.3s ease; }
+    button[type="submit"]:hover { background: var(--secondary); }
+
+    /* Back home */
+    .back-home { text-align:center; margin:3rem 0 1rem; }
+    .back-home a { background: var(--primary); color:white; padding:0.75rem 1.5rem; text-decoration:none; border-radius:5px; font-weight:bold; transition:background 0.3s; }
+    .back-home a:hover { background: var(--secondary); }
+
+    /* Footer */
+    footer { background: var(--secondary); color:white; text-align:center; padding:1.5rem; }
+
+    /* Back to Top */
+    #backToTop { display:none; position:fixed; bottom:30px; right:30px; background: var(--primary); color:white; border:none; padding:12px 18px; border-radius:50%; font-size:18px; cursor:pointer; z-index:1000; transition:background 0.3s, transform 0.3s; }
+    #backToTop:hover { background: var(--secondary); transform: scale(1.1); }
+
+    @media(max-width:600px){ nav{ flex-direction:column; align-items:center } iframe{ height:300px } }
+  </style>
+</head>
+<body class="light">
+
+<!-- Dark/Light toggle -->
+<button id="modeToggle" title="Toggle Dark/Light Mode"><i class="fas fa-moon"></i></button>
+
+<header>
+  <h1>Saving Money</h1>
+  <p>Build financial security by learning to save wisely.</p>
+</header>
+
+<nav>
+  <a href="about.html">← Home</a>
+  <a href="#importance">Why Save</a>
+  <a href="#strategies">Saving Tips</a>
+  <a href="#video">Watch</a>
+  <a href="#map">Map</a>
+  <a href="#newsletter">Newsletter</a>
+</nav>
+
+<main>
+  <section id="importance">
+    <h2><i class="fas fa-lightbulb"></i> Why Is Saving Important?</h2>
+    <p>Saving is a key component of financial health. Whether it's for emergencies, retirement, or a major purchase, building savings ensures you're prepared for life's uncertainties and opportunities.</p>
+    <img src="savings.jpg" alt="Saving importance image">
+  </section>
+
+  <section id="strategies">
+    <h2><i class="fas fa-coins"></i> Smart Saving Strategies</h2>
+    <div class="tips-container">
+      <div class="tip-card"><i class="fas fa-piggy-bank"></i><p><strong>Pay Yourself First:</strong> Treat savings like a bill you must pay monthly.</p></div>
+      <div class="tip-card"><i class="fas fa-wallet"></i><p><strong>Use a Budget:</strong> Allocate a portion of your income specifically to savings.</p></div>
+      <div class="tip-card"><i class="fas fa-bullseye"></i><p><strong>Set Goals:</strong> Save with a purpose – emergency fund, vacation, down payment, etc.</p></div>
+      <div class="tip-card"><i class="fas fa-robot"></i><p><strong>Automate:</strong> Set up automatic transfers to your savings account.</p></div>
+    </div>
+    <img src="savingstrategy.jpg" alt="Saving strategies image">
+  </section>
+
+  <section id="video">
+    <h2><i class="fas fa-video"></i> Watch: Saving Money 101</h2>
+    <iframe src="https://www.youtube.com/embed/JqYoLQXO7j4?si=jaKICNQvt90XexC4" title="YouTube video player" allowfullscreen></iframe>
+    <p style="font-size:0.85rem; margin-top:0.5rem; color:var(--text-alt)">Crdts: NCFE - National Centre for Financial Education</p>
+  </section>
+
+  <section id="map">
+    <h2><i class="fas fa-map-marker-alt"></i> Find Financial Help Near You</h2>
+    <p>Use the map below to locate nearby financial advisors or institutions:</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.053053310849!2d120.98713687541897!3d14.596052785889766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9f64e3e10c7%3A0xe9a859a1a53fd908!2s438%20J%20Nepomuceno%20St%2C%20Quiapo%2C%20Manila%2C%201001%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1758720421488!5m2!1sen!2sph" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+
+  <section id="newsletter">
+    <h2><i class="fas fa-envelope"></i> Newsletter / Inquiries</h2>
+    <p>Want more saving tips or have questions? Subscribe or contact us below:</p>
+    <form>
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" placeholder="Your name..." required>
+
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+      <label for="message">Your Message or Inquiry:</label>
+      <textarea id="message" name="message" rows="5" placeholder="Type your message here..."></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <div class="back-home">
+    <a href="about.html">&larr; Back to Home Page</a>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025 Financial Literacy. All rights reserved.</p>
+</footer>
+
+<button id="backToTop" title="Back to Top">↑</button>
+
+<script>
+  const backToTopBtn = document.getElementById("backToTop");
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll("nav a");
+  const modeToggle = document.getElementById("modeToggle");
+  const body = document.body;
+
+  // Scroll animations and Back-to-Top
+  window.addEventListener("scroll", () => {
+    backToTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+    sections.forEach(sec => {
+      if(sec.getBoundingClientRect().top <= window.innerHeight - 100) sec.classList.add("visible");
+    });
+    sections.forEach((sec, idx) => {
+      const rect = sec.getBoundingClientRect();
+      if(rect.top <= window.innerHeight/2 && rect.bottom >= 100){
+        navLinks.forEach(link => link.classList.remove("active"));
+        navLinks[idx].classList.add("active");
+      }
+    });
+  });
+
+  backToTopBtn.addEventListener("click", ()=> window.scrollTo({ top:0, behavior:"smooth" }));
+
+  // Smooth scroll nav
+  navLinks.forEach(link => {
+    link.addEventListener("click", e => {
+      if(link.getAttribute("href").startsWith("#")){
+        e.preventDefault();
+        document.querySelector(link.getAttribute("href")).scrollIntoView({behavior:"smooth"});
+      }
+    });
+  });
+
+  // Dark/Light mode toggle
+  modeToggle.addEventListener("click", () => {
+    if(body.classList.contains("light")){
+      body.classList.replace("light","dark");
+      modeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    } else {
+      body.classList.replace("dark","light");
+      modeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    }
+  });
+</script>
+
+</body>
+</html>
