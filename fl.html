@@ -4,10 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Homepage | Financial Literacy</title>
-  <meta
-    name="description"
-    content="Welcome to My Awesome Website. We offer a wide range of services to meet your needs."
-  />
+  <meta name="description" content="Learn essential financial literacy skills including budgeting, saving, investing, and managing credit to build a secure financial future." />
 
   <!-- Bootstrap CSS -->
   <link
@@ -17,8 +14,17 @@
     crossorigin="anonymous"
   />
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap Icons -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+
   <style>
-    /* === Light Mode (Default) === */
+    /* === THEME VARIABLES === */
     :root {
       --bg-color: #f7f9fb;
       --text-color: #333;
@@ -30,7 +36,7 @@
       --button-hover: #0056b3;
     }
 
-    /* === Dark Mode === */
+
     [data-theme="dark"] {
       --bg-color: #121212;
       --text-color: #e6e6e6;
@@ -42,18 +48,20 @@
       --button-hover: #007bff;
     }
 
-    /* === Base Styles === */
+
     body {
       font-family: "Poppins", sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
       transition: background-color 0.4s, color 0.4s;
+      margin: 0;
     }
 
+    /* === HEADER === */
     header {
       background: var(--header-bg);
       color: white;
-      padding: 1.2rem 0;
+      padding: 1rem 0;
       text-align: center;
       position: relative;
     }
@@ -61,34 +69,25 @@
     header h1 {
       font-weight: 700;
       letter-spacing: 1px;
+      margin-bottom: 0.5rem;
     }
 
-    nav ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 1rem 0 0 0;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.8rem;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: white;
+    /* === NAVIGATION === */
+    .navbar-nav .nav-link {
+      color: white !important;
+      font-weight: 500;
       padding: 0.5rem 1rem;
       border-radius: 25px;
-      transition: all 0.3s ease;
-      font-weight: 500;
+      transition: background 0.3s, color 0.3s;
     }
 
-    nav ul li a:hover,
-    nav ul li a.active {
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
       background-color: #ffffff;
-      color: var(--link-hover);
+      color: var(--link-hover) !important;
     }
 
-    /* Theme Toggle Button */
+    /* === THEME TOGGLE === */
     #themeToggle {
       position: absolute;
       top: 15px;
@@ -98,67 +97,155 @@
       border-radius: 50%;
       color: white;
       font-size: 18px;
-      padding: 5px 10px;
+      padding: 6px 10px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: background-color 0.3s;
     }
 
     #themeToggle:hover {
       background-color: rgba(255, 255, 255, 0.2);
     }
 
-    main {
-      max-width: 900px;
-      margin: 2.5rem auto;
-      padding: 1.5rem;
-      background-color: var(--card-bg);
-      border-radius: 10px;
+    /* === HERO SECTION === */
+    .hero {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 3rem 1.5rem;
+      margin-top: 2rem;
+      text-align: center;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.4s ease;
+      animation: fadeIn 1s ease;
     }
 
-    main h2 {
+    .hero h2 {
       color: var(--link-hover);
+      font-weight: 700;
       margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 700px;
+      margin: 0 auto 1.5rem auto;
+    }
+
+    .cta-btn {
+      background-color: var(--button-bg);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 30px;
+      transition: 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .cta-btn:hover {
+      background-color: var(--button-hover);
+      transform: scale(1.05);
+    }
+
+    /* === STATS SECTION === */
+    .stats-section {
+      text-align: center;
+      margin: 3rem 0;
+      padding: 2rem 1rem;
+      background-color: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .stats-section h3 {
+      color: var(--link-hover);
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.1rem;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--link-hover);
+    }
+
+    /* === FEATURED TOPICS === */
+    .topics-section {
+      padding: 3rem 1rem;
       text-align: center;
     }
 
-    main article p {
-      line-height: 1.8;
+    .topics-section h3 {
+      color: var(--link-hover);
+      font-weight: 700;
+      margin-bottom: 2rem;
     }
 
-    main img {
-      width: 100%;
+    .topic-card {
+      background-color: var(--card-bg);
       border-radius: 10px;
-      margin-top: 1.5rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      padding: 2rem 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      height: 100%;
     }
 
+    .topic-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    .topic-card i {
+      font-size: 2.5rem;
+      color: var(--link-hover);
+      margin-bottom: 1rem;
+    }
+
+    .topic-card h4 {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .topic-card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* === FOOTER === */
     footer {
       background-color: var(--footer-bg);
       color: white;
       text-align: center;
       padding: 1rem;
-      margin-top: 2rem;
-      transition: background-color 0.4s;
+      margin-top: 3rem;
+      font-size: 0.9rem;
     }
 
-    /* Back to Top Button */
+    /* === BACK TO TOP === */
     #backToTop {
       display: none;
       position: fixed;
       bottom: 30px;
       right: 30px;
-      z-index: 99;
-      border: none;
-      outline: none;
+
+      
       background-color: var(--button-bg);
       color: white;
-      cursor: pointer;
-      padding: 10px 15px;
+      border: none;
       border-radius: 50%;
+      padding: 12px 15px;
       font-size: 18px;
+      cursor: pointer;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
       transition: 0.3s ease;
+      z-index: 99;
     }
 
     #backToTop:hover {
@@ -166,67 +253,142 @@
       transform: translateY(-3px);
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === RESPONSIVE === */
     @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
+      .hero {
+        padding: 2rem 1rem;
+      }
+      .topic-card {
+        margin-bottom: 1.5rem;
       }
     }
   </style>
 </head>
 
 <body>
+  <!-- HEADER -->
   <header>
     <h1>Financial Literacy</h1>
-    <button id="themeToggle" title="Toggle theme">🌙</button>
-    <nav>
-      <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="E-Basic-FL-Hub/about.html">About Us</a></li>
-        <li><a href="E-Basic-FL-Hub/contact.html">Contact</a></li>
-        <li><a href="E-Basic-FL-Hub/financial-literacy.html">Financial Literacy</a></li>
-        <li><a href="E-Basic-FL-Hub/budgeting.html">Budgeting</a></li>
-        <li><a href="E-Basic-FL-Hub/credit.html">Credit</a></li>
-        <li><a href="E-Basic-FL-Hub/debt.html">Debt</a></li>
-        <li><a href="E-Basic-FL-Hub/investing.html">Investing</a></li>
-        <li><a href="E-Basic-FL-Hub/banking.html">Banking</a></li>
-        <li><a href="E-Basic-FL-Hub/saving.html">Savings</a></li>
-      </ul>
+    <button id="themeToggle" title="Toggle dark/light theme" aria-label="Toggle theme">🌙</button>
+
+    <nav class="navbar navbar-expand-md navbar-dark" aria-label="Main navigation">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a href="fl.html" class="nav-link active">Home</a></li>
+            <li class="nav-item"><a href="E-Basic-FL-Hub/about.html" class="nav-link">About Us</a></li>
+            <li class="nav-item"><a href="E-Basic-FL-Hub/contact.html" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a href="E-Basic-FL-Hub/financial-literacy.html" class="nav-link">Financial Literacy</a></li>
+            <li class="nav-item"><a href="E-Basic-FL-Hub/budgeting.html" class="nav-link">Budgeting</a></li>
+            <li class="nav-item"><a href="E-Basic-FL-Hub/credit.html" class="nav-link">Credit</a></li>
+            <li class="nav-item"><a href="E-Basic-FL-Hub/debt.html" class="nav-link">Debt</a></li>
+            <li class="nav-item"><a href="E-Basic-FL-Hub/investing.html" class="nav-link">Investing</a></li>
+            <li class="nav-item"><a href="E-Basic-FL-Hub/banking.html" class="nav-link">Banking</a></li>
+            <li class="nav-item"><a href="E-Basic-FL-Hub/saving.html" class="nav-link">Savings</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
   </header>
 
-  <main class="container">
-    <section>
-      <h2>The Ultimate Guide to Basic Financial Literacy</h2>
-      <article>
-        <p>Welcome to our site!</p>
-        <p>
-          We know that the earlier you learn the basics of how money works, the
-          more likely you will be confident and successful with your finances
-          later in life. It’s never too late to start learning, but it pays to
-          start as early as you can.
-        </p>
-        <p>
-          Banking, budgeting, saving, credit, debt, and investing are the pillars
-          that support most of the financial decisions we make in our lives.
-        </p>
-        <p>
-          On this site, we will help you to understand the pillars of financial
-          literacy and empower you to make informed money decisions.
-        </p>
-        <p>Learn with us, enjoy!</p>
-        <img src="FL.jpg" alt="Financial literacy illustration" />
-      </article>
-    </section>
+  <!-- HERO SECTION -->
+  <main class="container hero" role="main">
+    <h2>Empower Your Financial Future</h2>
+    <p>
+      Learn how to budget, save, and invest wisely with our easy-to-follow guides.
+      Financial literacy is your key to freedom — start learning today and build a secure future.
+    </p>
+    <a href="E-Basic-FL-Hub/financial-literacy.html" class="cta-btn">Start Learning</a>
+    <img src="FL.jpg" alt="Illustration representing financial literacy and money management" />
   </main>
 
-  <footer>
+  <!-- STATS SECTION -->
+  <section class="stats-section container">
+    <h3>Our Impact</h3>
+    <div class="row justify-content-center">
+      <div class="col-md-4 stat">
+        <span class="stat-number" data-target="10000">0</span>
+        <span>Learners Empowered</span>
+      </div>
+      <div class="col-md-4 stat">
+        <span class="stat-number" data-target="150">0</span>
+        <span>Educational Resources</span>
+      </div>
+      <div class="col-md-4 stat">
+        <span class="stat-number" data-target="50">0</span>
+        <span>Financial Topics Covered</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED TOPICS SECTION -->
+  <section class="topics-section container">
+    <h3>Explore Our Key Topics</h3>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="topic-card">
+          <i class="bi bi-wallet2"></i>
+          <h4>Budgeting</h4>
+          <p>Learn how to manage your money effectively and track your spending to reach your goals.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="topic-card">
+          <i class="bi bi-piggy-bank"></i>
+          <h4>Saving</h4>
+          <p>Discover smart saving habits and build an emergency fund to secure your future.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="topic-card">
+          <i class="bi bi-graph-up-arrow"></i>
+          <h4>Investing</h4>
+          <p>Understand how investments work and how to grow your wealth through informed decisions.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 mx-auto">
+        <div class="topic-card">
+          <i class="bi bi-credit-card"></i>
+          <h4>Credit</h4>
+          <p>Learn about credit scores, reports, and responsible borrowing to build a strong credit history.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 mx-auto">
+        <div class="topic-card">
+          <i class="bi bi-cash-coin"></i>
+          <h4>Debt Management</h4>
+          <p>Gain control over your debt and learn strategies to pay it off efficiently while saving money.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
     <p>&copy; 2025 Financial Literacy. All Rights Reserved.</p>
   </footer>
 
-  <button id="backToTop" title="Back to Top">↑</button>
+  <!-- BACK TO TOP BUTTON -->
+  <button id="backToTop" title="Back to top" aria-label="Scroll to top">↑</button>
 
-  <!-- Bootstrap JS -->
+  <!-- BOOTSTRAP JS -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -236,6 +398,7 @@
   <script>
     const backToTopBtn = document.getElementById("backToTop");
     const themeToggle = document.getElementById("themeToggle");
+    const statNumbers = document.querySelectorAll(".stat-number");
 
     // Back to Top
     window.addEventListener("scroll", () => {
@@ -246,7 +409,7 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    // === Theme Detection ===
+    // Theme Detection
     const userPref = localStorage.getItem("theme");
     const systemPrefDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
@@ -255,7 +418,7 @@
       themeToggle.textContent = "☀️";
     }
 
-    // === Theme Toggle Functionality ===
+
     themeToggle.addEventListener("click", () => {
       const currentTheme = document.documentElement.getAttribute("data-theme");
       if (currentTheme === "dark") {
@@ -268,6 +431,33 @@
         themeToggle.textContent = "☀️";
       }
     });
+
+    // Animated Stats
+    const animateStats = () => {
+      statNumbers.forEach(stat => {
+        const target = +stat.dataset.target;
+        const updateCount = () => {
+          const current = +stat.innerText;
+          const increment = target / 100;
+          if (current < target) {
+            stat.innerText = Math.ceil(current + increment);
+            setTimeout(updateCount, 25);
+          } else {
+            stat.innerText = target.toLocaleString();
+          }
+        };
+        updateCount();
+      });
+    };
+
+    const statsSection = document.querySelector(".stats-section");
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        animateStats();
+        observer.disconnect();
+      }
+    });
+    observer.observe(statsSection);
   </script>
 </body>
 </html>

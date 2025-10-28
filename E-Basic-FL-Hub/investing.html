@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Understanding Investing</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-HXKmZ1xJ6J/..." crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
+    /* ================= Root Variables ================= */
     :root {
       --primary-color: #1E3A8A;
       --secondary-color: #2563EB;
@@ -29,6 +31,7 @@
       --gradient-header: linear-gradient(135deg, #3B82F6, #60A5FA);
     }
 
+    /* ================= General ================= */
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -36,9 +39,15 @@
       color: var(--text-color);
       line-height: 1.6;
       transition: background-color 0.3s, color 0.3s;
+      scroll-behavior: smooth;
     }
 
-    /* Gradient Header */
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ================= Header ================= */
     header {
       background: var(--gradient-header);
       color: white;
@@ -60,7 +69,7 @@
       color: rgba(255,255,255,0.9);
     }
 
-    /* Interactive Navigation */
+    /* ================= Navigation ================= */
     nav {
       display: flex;
       justify-content: center;
@@ -75,21 +84,22 @@
 
     nav a {
       color: white;
-      text-decoration: none;
-      margin: 0.5rem 1rem;
       font-weight: 600;
+      margin: 0.5rem 1rem;
       padding: 0.5rem 1rem;
       border-radius: 8px;
-      transition: transform 0.2s, background 0.3s;
+      transition: 0.3s all;
     }
 
-    nav a:hover {
-      background-color: rgba(255,255,255,0.15);
-      transform: translateY(-3px);
+    nav a:hover,
+    nav a.active {
+      background-color: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
     }
 
+    /* ================= Main ================= */
     main {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 2rem auto;
       padding: 2rem;
       background-color: var(--card-bg-color);
@@ -162,35 +172,33 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
 
-    .back-home {
-      text-align: center;
-      margin: 3rem 0 1rem;
-    }
-
-    .back-home a {
-      background-color: var(--accent-color);
-      color: white;
-      padding: 0.75rem 1.5rem;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: background-color 0.3s ease, transform 0.2s;
-    }
-
-    .back-home a:hover {
-      background-color: #D97706;
-      transform: translateY(-2px);
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      background-color: var(--secondary-color);
-      color: white;
+    /* ================= Investment Tips Cards ================= */
+    .tips-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
       margin-top: 2rem;
-      font-size: 0.95rem;
     }
 
+    .tip-card {
+      background-color: var(--card-bg-color);
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+      padding: 1.5rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .tip-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+    }
+
+    .tip-card h3 {
+      margin-top: 0;
+      color: var(--secondary-color);
+    }
+
+    /* ================= Back to Top / Theme ================= */
     #backToTop, #themeToggle {
       position: fixed;
       bottom: 30px;
@@ -200,33 +208,46 @@
       cursor: pointer;
       font-size: 16px;
       color: white;
-      transition: background-color 0.3s, transform 0.2s;
+      transition: background-color 0.3s, transform 0.2s, opacity 0.3s;
       z-index: 1000;
       box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      opacity: 0;
+      visibility: hidden;
     }
 
-    #backToTop {
-      right: 30px;
-      background-color: var(--primary-color);
+    #backToTop.show, #themeToggle.show {
+      opacity: 1;
+      visibility: visible;
     }
 
-    #themeToggle {
-      left: 30px;
-      background-color: var(--primary-color);
+    #backToTop { right: 30px; background-color: var(--primary-color); }
+    #themeToggle { left: 30px; background-color: var(--primary-color); }
+
+    #backToTop:hover, #themeToggle:hover { background-color: var(--btn-hover); transform: translateY(-2px); }
+
+    /* ================= Footer ================= */
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      background-color: var(--secondary-color);
+      color: white;
+      font-size: 0.95rem;
     }
 
-    #backToTop:hover, #themeToggle:hover {
-      background-color: var(--btn-hover);
-      transform: translateY(-2px);
+    footer .socials a {
+      margin: 0 0.5rem;
+      color: white;
+      font-size: 1.2rem;
+      transition: color 0.3s;
     }
 
+    footer .socials a:hover { color: var(--accent-color); }
+
+    /* ================= Responsive ================= */
     @media (max-width: 600px) {
-      nav {
-        flex-direction: column;
-      }
+      nav { flex-direction: column; }
       iframe { height: 300px; }
       nav a { margin: 0.5rem 0; }
-      .back-home { margin: 2rem 0; }
       #themeToggle { left: 50%; transform: translateX(-50%); bottom: 80px; }
     }
   </style>
@@ -238,7 +259,7 @@
     <p>Build your wealth and secure your financial future through smart investing</p>
   </header>
 
-  <nav>
+  <nav id="navbar">
     <a href="#what-is-investing">What is Investing</a>
     <a href="#why-invest">Why Invest</a>
     <a href="#types-of-investments">Types</a>
@@ -249,10 +270,14 @@
   <main>
     <section id="what-is-investing">
       <h2>What is Investing?</h2>
-      <p>
-        Investing is the act of allocating resources—usually money—with the expectation of generating an income or profit. Unlike saving, investing puts your money to work to grow over time.
-      </p>
+      <p>Investing is the act of allocating resources—usually money—with the expectation of generating an income or profit. Unlike saving, investing puts your money to work to grow over time.</p>
       <img src="investing.jpg" alt="Investing Basics">
+
+      <div class="tips-container">
+        <div class="tip-card"><h3>Start Early</h3><p>Time in the market beats timing the market.</p></div>
+        <div class="tip-card"><h3>Diversify</h3><p>Don't put all your eggs in one basket.</p></div>
+        <div class="tip-card"><h3>Stay Informed</h3><p>Follow market trends and financial news.</p></div>
+      </div>
     </section>
 
     <section id="why-invest">
@@ -278,10 +303,104 @@
       <img src="types.jpg" alt="Investment Types">
     </section>
 
+    <section id="stats">
+  <h2>Investment Stats at a Glance</h2>
+  <div class="stats-container">
+    <div class="stat-card">
+      <h3>Average Stock Market Return</h3>
+      <p><span class="counter" data-target="10.5">0</span>% per year</p>
+    </div>
+    <div class="stat-card">
+      <h3>Inflation Rate Beaten</h3>
+      <p><span class="counter" data-target="3.2">0</span>% per year</p>
+    </div>
+    <div class="stat-card">
+      <h3>Years to Double Investment</h3>
+      <p><span class="counter" data-target="7">0</span> years</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Stats section */
+  #stats {
+    text-align: center;
+  }
+
+  .stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .stat-card {
+    background-color: var(--card-bg-color);
+    border-radius: 12px;
+    padding: 2rem;
+    width: 250px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  }
+
+  .stat-card h3 {
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+  }
+
+  .counter {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+
+  @media(max-width:600px){
+    .stats-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+
+<script>
+  // Animated counters
+  const counters = document.querySelectorAll('.counter');
+  const options = { threshold: 0.6 };
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const el = entry.target;
+        const target = +el.getAttribute('data-target');
+        let count = 0;
+        const increment = target / 100;
+        const interval = setInterval(() => {
+          count += increment;
+          if(count >= target){
+            el.innerText = target.toFixed(1).replace('.0','');
+            clearInterval(interval);
+          } else {
+            el.innerText = count.toFixed(1).replace('.0','');
+          }
+        }, 20);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, options);
+
+  counters.forEach(counter => counterObserver.observe(counter));
+</script>
+
+
     <section id="video">
       <h2>Watch: Investing for Beginners</h2>
       <iframe src="https://www.youtube.com/embed/qIw-yFC-HNU?si=8sqDZ7KYml3UZ6tN" title="YouTube video player" allowfullscreen></iframe>
-      <p>Crdts: Professor Dave Explains</p>
+      <p>Credits: Professor Dave Explains</p>
     </section>
 
     <section id="map">
@@ -297,6 +416,11 @@
 
   <footer>
     <p>&copy; 2025 InvestSmart. All rights reserved.</p>
+    <div class="socials">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
   </footer>
 
   <button id="backToTop" title="Back to Top">↑</button>
@@ -314,16 +438,29 @@
 
     // Back to top
     const backToTopBtn = document.getElementById("backToTop");
+    const themeToggle = document.getElementById("themeToggle");
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) backToTopBtn.style.display = "block";
-      else backToTopBtn.style.display = "none";
+      if (window.scrollY > 300) { backToTopBtn.classList.add("show"); themeToggle.classList.add("show"); }
+      else { backToTopBtn.classList.remove("show"); themeToggle.classList.remove("show"); }
+
+      // Highlight active section in nav
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        const link = document.querySelector(`nav a[href="#${section.id}"]`);
+        if (rect.top <= 120 && rect.bottom >= 120) link.classList.add('active');
+        else link.classList.remove('active');
+      });
     });
+
     backToTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    // Theme toggle
-    const themeToggle = document.getElementById("themeToggle");
+    // Theme toggle with persistence
+    const currentTheme = localStorage.getItem("theme");
+    if(currentTheme) document.documentElement.dataset.theme = currentTheme;
     themeToggle.addEventListener("click", () => {
-      document.documentElement.dataset.theme = document.documentElement.dataset.theme === "dark" ? "" : "dark";
+      const newTheme = document.documentElement.dataset.theme === "dark" ? "" : "dark";
+      document.documentElement.dataset.theme = newTheme;
+      localStorage.setItem("theme", newTheme);
     });
   </script>
 

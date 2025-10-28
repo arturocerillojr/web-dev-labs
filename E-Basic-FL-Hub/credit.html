@@ -4,72 +4,98 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Understanding Credit | Financial Literacy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    /* === Base Colors === */
+    /* === Base Colors (Match Budgeting Page) === */
     :root {
-      --primary: #4B0082;
-      --secondary: #360062;
-      --accent: #7F00FF;
-      --bg-color: #f4f4f4;
-      --text-color: #333;
-      --card-bg: #fff;
+      --primary: #0D6EFD;      /* Blue */
+      --secondary: #0A58CA;    /* Darker Blue */
+      --accent: #FFC107;       /* Gold */
+      --bg-color: #f9f9f9;
+      --text-color: #212529;
+      --card-bg: #ffffff;
       --header-text: #fff;
     }
 
     [data-theme="dark"] {
-      --bg-color: #1a1a1a;
-      --text-color: #f1f1f1;
-      --card-bg: #2a2a2a;
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --card-bg: #1e1e1e;
       --header-text: #fff;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Roboto', sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
       scroll-behavior: smooth;
-      padding-top: 110px;
+      padding-top: 120px;
       transition: background-color 0.3s, color 0.3s;
     }
 
-    /* === Header === */
-    header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: var(--header-text);
-      text-align: center;
-      padding: 2.5rem 1rem;
-      position: fixed;
-      top: 0;
+    /* === Header / Hero === */
+    header.hero {
+      position: relative;
       width: 100%;
-      z-index: 1000;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      transition: background-color 0.3s;
+      height: 320px;
+      background: url('credit-hero.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: var(--header-text);
     }
 
-    header h1 { font-size: 2.2rem; margin-bottom: 0.3rem; }
-    header p { font-size: 1.1rem; margin: 0; }
+    header.hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(13,110,253,0.6); /* overlay */
+      z-index: 0;
+    }
 
-    /* === Dark/Light Toggle Button === */
+    header.hero h1, header.hero p {
+      position: relative;
+      z-index: 1;
+    }
+
+    header.hero h1 { font-size: 2.8rem; margin-bottom: 0.5rem; }
+    header.hero p { font-size: 1.2rem; }
+
+    #ctaBtn {
+      margin-top: 15px;
+      padding: 12px 25px;
+      border: none;
+      background-color: var(--accent);
+      color: #212529;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      z-index: 1;
+    }
+    #ctaBtn:hover { background-color: #e0a800; }
+
+    /* === Theme Toggle === */
     #themeToggle {
       position: fixed;
       top: 20px;
       right: 20px;
       background-color: var(--accent);
-      color: white;
+      color: #212529;
       border: none;
-      padding: 8px 15px;
+      padding: 10px 18px;
       border-radius: 25px;
       cursor: pointer;
+      font-weight: 500;
       z-index: 1100;
-      font-weight: bold;
+
       transition: 0.3s;
     }
-    #themeToggle:hover { opacity: 0.8; }
+    #themeToggle:hover { opacity: 0.85; }
 
     /* === Navbar === */
     nav {
@@ -80,40 +106,35 @@
       gap: 1rem;
       padding: 1rem;
       position: sticky;
-      top: 100px;
+      top: 0;
       z-index: 999;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-      border-radius: 0 0 10px 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       transition: background-color 0.3s;
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 500;
       padding: 0.6rem 1rem;
       border-radius: 25px;
       transition: all 0.3s ease;
     }
 
     nav a:hover,
-    nav a.active { background-color: var(--accent); color: #fff; }
+    nav a.active { background-color: var(--accent); color: #212529; }
 
     /* === Main Section === */
-    main {
-      max-width: 960px;
-      margin: 2rem auto;
-      padding: 2rem;
-    }
+    main { max-width: 960px; margin: 2rem auto; padding: 1rem; }
 
     section {
       margin-bottom: 3rem;
       background-color: var(--card-bg);
-      padding: 1.8rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
       opacity: 0;
-      transform: translateY(40px);
+      transform: translateY(30px);
       transition: all 0.8s ease-out;
     }
 
@@ -121,21 +142,16 @@
 
     h2 {
       color: var(--primary);
-      border-left: 5px solid var(--accent);
-      padding-left: 10px;
-      margin-bottom: 1.2rem;
+      border-left: 6px solid var(--accent);
+      padding-left: 12px;
+      margin-bottom: 1.5rem;
       font-weight: 700;
     }
 
     p, ul, ol { line-height: 1.7; }
     ul li, ol li { margin-bottom: 0.6rem; }
 
-    img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin-top: 1rem;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-    }
+    img { max-width: 100%; border-radius: 10px; margin-top: 1rem; }
 
     iframe {
       width: 100%;
@@ -143,10 +159,31 @@
       border-radius: 10px;
       margin-top: 1rem;
       border: none;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
-    /* === Back to Top Button === */
+    /* === Cards for Stats === */
+    .stats-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .card {
+      background-color: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      flex: 1 1 200px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 8px 18px rgba(0,0,0,0.15); }
+    .card h3 { margin-bottom: 0.6rem; color: var(--primary); }
+    .card p { font-weight: 500; }
+
+    /* === Back to Top & Home === */
     #backToTop {
       display: none;
       position: fixed;
@@ -155,17 +192,17 @@
       background-color: var(--primary);
       color: white;
       border: none;
-      padding: 12px 15px;
+      padding: 12px 16px;
       border-radius: 50%;
       cursor: pointer;
       font-size: 18px;
       z-index: 1000;
-      transition: 0.3s ease;
+      transition: 0.3s;
       box-shadow: 0 3px 10px rgba(0,0,0,0.3);
     }
     #backToTop:hover { background-color: var(--secondary); transform: translateY(-3px); }
 
-    /* === Back Home === */
+
     .back-home { text-align: center; margin-top: 2rem; }
     .back-home a {
       background-color: var(--primary);
@@ -176,7 +213,7 @@
       border-radius: 25px;
       transition: 0.3s;
     }
-    .back-home a:hover { background-color: var(--accent); }
+    .back-home a:hover { background-color: var(--accent); color: #212529; }
 
     /* === Footer === */
     footer {
@@ -191,10 +228,13 @@
 
     /* === Responsive === */
     @media (max-width: 768px) {
-      header h1 { font-size: 1.8rem; }
+      header.hero h1 { font-size: 2.2rem; }
+      header.hero p { font-size: 1rem; }
       iframe { height: 260px; }
-      main { padding: 1.5rem; }
+      main { padding: 1rem; }
+      .stats-cards { flex-direction: column; align-items: center; }
     }
+
     @media (max-width: 480px) {
       nav { flex-direction: column; align-items: center; }
       nav a { margin: 0.4rem 0; }
@@ -203,14 +243,18 @@
 </head>
 <body>
 
-  <button id="themeToggle">Dark Mode</button>
+  <!-- Theme Toggle -->
+  <button id="themeToggle" aria-label="Toggle Dark/Light Mode">Dark Mode</button>
 
-  <header>
+  <!-- Hero -->
+  <header class="hero" role="banner">
     <h1>Understanding Credit</h1>
     <p>Build strong credit for a better financial future!</p>
+    <button id="ctaBtn" aria-label="Start Learning About Credit">Get Started</button>
   </header>
 
-  <nav>
+  <!-- Navbar -->
+  <nav role="navigation" aria-label="Main Navigation">
     <a href="#what-is-credit" class="active">What is Credit</a>
     <a href="#why-credit-matters">Why It Matters</a>
     <a href="#improve-credit">Improve Credit</a>
@@ -222,6 +266,7 @@
   </nav>
 
   <main>
+    <!-- Original Sections Unchanged -->
     <section id="what-is-credit">
       <h2>What is Credit?</h2>
       <p>Credit is the ability to borrow money or access goods or services with the understanding that you’ll pay later. It plays a crucial role in personal and business finance.</p>
@@ -284,9 +329,7 @@
 
     <section id="video">
       <h2>Watch: Understanding Credit</h2>
-      <iframe src="https://www.youtube.com/embed/EBdXREhOuME" 
-        title="YouTube video player" allowfullscreen>
-      </iframe>
+      <iframe src="https://www.youtube.com/embed/EBdXREhOuME" title="YouTube video player" allowfullscreen></iframe>
       <p>Credits: UCB Student Affairs</p>
     </section>
 
@@ -308,10 +351,10 @@
     <p>&copy; 2025 Financial Literacy. All rights reserved.</p>
   </footer>
 
-  <button id="backToTop" title="Back to Top">↑</button>
+  <button id="backToTop" aria-label="Back to Top">↑</button>
 
   <script>
-    // ===== Scroll Animations =====
+    // === Fade-in Animations on Scroll ===
     const sections = document.querySelectorAll('section');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -323,7 +366,7 @@
 
     sections.forEach(section => observer.observe(section));
 
-    // ===== Back to Top Button =====
+    // === Back to Top Button ===
     const backToTopBtn = document.getElementById("backToTop");
     window.addEventListener("scroll", () => {
       backToTopBtn.style.display = (window.scrollY > 300) ? "block" : "none";
@@ -342,22 +385,19 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    // ===== Dark/Light Mode Toggle =====
-    const themeBtn = document.getElementById('themeToggle');
-    themeBtn.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      if(current === 'dark'){
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeBtn.textContent = 'Dark Mode';
-      } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeBtn.textContent = 'Light Mode';
-      }
+    // === Dark/Light Mode Toggle with localStorage ===
+    const themeBtn = document.getElementById("themeToggle");
+    const currentTheme = localStorage.getItem("theme") || "light";
+    document.documentElement.setAttribute("data-theme", currentTheme);
+    themeBtn.textContent = currentTheme === "dark" ? "Light Mode" : "Dark Mode";
+
+    themeBtn.addEventListener("click", () => {
+      let theme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", theme);
+      themeBtn.textContent = theme === "dark" ? "Light Mode" : "Dark Mode";
+      localStorage.setItem("theme", theme);
     });
-
-    // Set initial theme
-    document.documentElement.setAttribute('data-theme', 'light');
   </script>
-
+  
 </body>
 </html>
