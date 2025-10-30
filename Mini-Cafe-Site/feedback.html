@@ -1,354 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Café de Palacio</title>
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;700&display=swap');
-
-        :root {
-            --primary-color: #8B4513; /* Saddle Brown */
-            --secondary-color: #A0522D; /* Sienna */
-            --light-color: #F5F5DC; /* Beige */
-            --dark-color: #36221D; /* Dark Brown */
-            --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--light-color);
-            color: var(--dark-color);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-
-        /* --- Navigation Bar --- */
-        .navbar {
-            background-color: var(--dark-color);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--box-shadow);
-        }
-
-        .navbar-nav {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-item {
-            margin: 0 1.5rem;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: var(--light-color);
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: color 0.3s ease-in-out;
-            padding: 0.5rem;
-            border-bottom: 2px solid transparent;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
-        }
-
-        /* --- Sections --- */
-        .page-section {
-            background-color: #fff;
-            padding: 3rem 2rem;
-            border-radius: 12px;
-            box-shadow: var(--box-shadow);
-            margin-top: 2rem;
-            display: none; /* All sections are hidden by default */
-        }
-
-        .page-section.active {
-            display: block; /* The active section is shown */
-        }
-
-        h2 {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary-color);
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        p {
-            color: var(--dark-color);
-            margin-bottom: 1rem;
-        }
-
-        /* --- Home Section --- */
-        .hero-section {
-            background-image: url('https://placehold.co/900x500/A0522D/F5F5DC?text=Cafe+de+Palacio');
-            background-size: cover;
-            background-position: center;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--light-color);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            border-radius: 12px;
-            margin-top: 2rem;
-            position: relative;
-        }
-
-        .hero-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            font-style: italic;
-        }
-
-        /* --- Menu List Box Styling (reused) --- */
-        .menu-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .menu-item {
-            background-color: var(--light-color);
-            padding: 1.5rem;
-            border: 2px solid var(--secondary-color);
-            border-radius: 8px;
-            text-align: left;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .menu-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .menu-item h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--dark-color);
-            margin-top: 0;
-            margin-bottom: 0.5rem;
-        }
-
-        .menu-item p {
-            font-size: 1rem;
-            color: var(--secondary-color);
-            margin-bottom: 0;
-        }
-
-        .menu-item .price {
-            font-weight: bold;
-            color: var(--primary-color);
-            float: right;
-        }
-
-        /* --- Contact Form Styling --- */
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            text-align: left;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group label {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            padding: 0.75rem;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            color: var(--dark-color);
-            background-color: #f9f9f9;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease-in-out;
-        }
-
-        .submit-btn:hover {
-            background-color: var(--secondary-color);
-        }
-
-        /* --- Responsive Design --- */
-        @media (max-width: 768px) {
-            .cafe-header h1 {
-                font-size: 2.5rem;
-            }
-            .content-section h2 {
-                font-size: 1.8rem;
-            }
-            .menu-list {
-                gap: 1rem;
-            }
-        }
-        .gallery-btn {
-  background-color: var(--secondary-color);
-  color: var(--light-color);
-  border: none;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.gallery-btn:hover {
-  background-color: var(--primary-color);
-  transform: scale(1.05);
-  color: var(--light-color);
-}
-
-
-    </style>
-</head>
-<body>
-
-    <nav class="navbar">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a href="#" class="nav-link active" data-section="home">Home</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link" data-section="menu">Menu</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link" data-section="about">About Us</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link" data-section="contact">Contact</a>
-            </li>
-
-        </ul>
-
-    </nav>
-
-    <div class="container">
-        <!-- --- Home Section --- -->
-        <section id="home" class="page-section active">
-            <header class="cafe-header">
-                <h1>Café de Palacio</h1>
-                <p>A Taste of Elegance in Every Cup</p>
-            </header>
-            <div class="hero-section">
-                <span class="hero-text">Welcome to Our Cafe</span>
-            </div>
-            <p>
-                Step into a world of rich aromas and classic flavors. At Cafe de Palacio, we combine tradition with a modern touch to bring you the finest coffee and pastries.
-            </p>
-        </section>
-
-        <!-- --- About Us Section --- -->
-        <section id="about" class="page-section">
-            <h2>About Us</h2>
-            <p>
-              At Café de Palacio, we believe in great coffee, cozy vibes, and community spirit. Since 2023, we’ve been a neighborhood star. Come for the coffee, stay great.
-            </p>
-        </section>
-
-        <!-- --- Contact Section --- -->
-        <section id="contact" class="page-section">
-            <link rel="stylesheet" href="contact-style.css">
-            <h2>Contact Us</h2>
-            <p>
-                Have a question or a comment? We'd love to hear from you.
-            </p>
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </section>
-    </div>
-
-<!-- --- Menu Section: --- -->
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="menu-style.css">
-</head>
-  <main class="container my-5">
-    <h2 class="text-center mb-4">Our Menu:</h2>
-
-    <!-- Empty container for dynamic menu items -->
-    <div id="menu-list" class="row g-4">
-      <!-- Menu cards will be inserted here dynamically -->
-    </div>
-
-    <!-- Order Summary Section -->
-    <section class="order-summary mt-5">
-      <h2>Your Order</h2>
-      <ul id="order-list" class="list-group"></ul>
-
-    </section>
-  </main>
-
-
-  <!-- JavaScript -->
-  <script src="menu.js"></script>
-
-
-
-  <!-- Enhanced Button with Icon -->
-
-<div class="text-center my-4">
-  <button 
-    class="btn btn-lg px-4 py-2 fw-bold shadow-sm d-inline-flex align-items-center gap-2 gallery-btn"
-    onclick="window.location.href='gallery.html';"
-  >
-    <span>View Gallery de Palacio</span>
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
-      <path d="M9.5 2a.5.5 0 0 1 .5.5V3h1a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h1v-.5a.5.5 0 0 1 .5-.5h3zM8 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
-      <path d="M8 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
-    </svg>
-  </button>
-</div>
-
-
-  <!-- Feedback -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Project Part - 10 | Feedback Form with JS Validation </title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -377,18 +32,20 @@
       color: var(--light-color);
       padding: 1.5rem 0;
       box-shadow: var(--box-shadow);
-      text-align: center;
+    text-align: center;
     }
 
     header h1 {
       font-family: 'Playfair Display', serif;
       font-size: 2.5rem;
       margin: 0;
+       text-align: center;
     }
 
     header p {
       font-size: 1.1rem;
       margin-top: 0.5rem;
+       text-align: center;
     }
 
     .container {
@@ -400,7 +57,6 @@
       box-shadow: var(--box-shadow);
       text-align: center;
     }
-    
 
     h2 {
       font-family: 'Playfair Display', serif;
@@ -414,6 +70,7 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      
     }
 
     label {
@@ -530,6 +187,10 @@
   </style>
 </head>
 <body>
+  <header>
+    <h1>☕ Café de Palacio</h1>
+    <p>Your thoughts make us better every day</p>
+  </header>
 
   <div class="container">
     <!-- Feedback Form -->
@@ -773,62 +434,5 @@
       });
     }
   </script>
-</body>
-
-
-    <!-- Embedded Location Map -->
-                <div class="col-md-6">
-                    <h4 class="mb-3">Visit Us at Our Location</h4>
-                    <div class="ratio ratio-4x3">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d549.0283242405188!2d120.98937381053494!3d14.595799880638976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9f64e3e10c7%3A0xe9a859a1a53fd908!2s438%20J%20Nepomuceno%20St%2C%20Quiapo%2C%20Manila%2C%201001%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1759734846899!5m2!1sen!2sph"
-                            allowfullscreen=""
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-      <p>&copy; 2025 Café de Palacio. All rights reserved.</p>
-  </footer>
-
-
-
-
-
-    <script>
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('.page-section');
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
-
-                // Hide all sections
-                sections.forEach(section => {
-                    section.classList.remove('active');
-                });
-
-                // Deactivate all nav links
-                navLinks.forEach(nav => {
-                    nav.classList.remove('active');
-                });
-
-                // Show the selected section and activate the nav link
-                const targetSection = event.target.getAttribute('data-section');
-                document.getElementById(targetSection).classList.add('active');
-                event.target.classList.add('active');
-            });
-        });
-
-        // Set the menu section as active by default
-        document.getElementById('home').classList.add('active');
-        document.querySelector('[data-section="home"]').classList.add('active');
-    </script>
-
-
 </body>
 </html>

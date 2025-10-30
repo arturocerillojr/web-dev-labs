@@ -1,56 +1,368 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="contact-style.css">
-    <title>Café de Palacio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café de Palacio</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --primary-color: #8B4513; /* Saddle Brown */
+    --secondary-color: #A0522D; /* Sienna */
+    --light-color: #F5F5DC; /* Beige */
+    --dark-color: #36221D; /* Dark Brown */
+    --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    margin: 0;
+    line-height: 1.6;
+}
 
- <!-- --- Contact Section --- -->
-        <section id="contact" class="page-section">
-            <link rel="stylesheet" href="contact-style.css">
-            <h2>Contact Us</h2>
-            <p>
-                Have a question or a comment? We'd love to hear from you.
-            </p>
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </section>
+/* Navbar */
+.navbar {
+    background-color: var(--dark-color);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--box-shadow);
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.nav-item {
+    margin: 0 1rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--light-color);
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* Sections */
+.page-section {
+    max-width: 900px;
+    margin: 2rem auto;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+    display: none;
+}
+
+.page-section.active {
+    display: block;
+}
+
+/* Hero Section */
+.hero-section {
+    background-image: url('https://placehold.co/900x400/A0522D/F5F5DC?text=Cafe+de+Palacio');
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+
+.hero-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-style: italic;
+    text-align: center;
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: left;
+}
+
+label {
+    font-weight: bold;
+}
+
+input, textarea {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: var(--dark-color);
+    background-color: #f9f9f9;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+button {
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.submit-btn {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+}
+
+button.submit-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Message & Feedback list */
+.message, .feedback-entry, .reservation-entry, .email-status {
+    background-color: var(--light-color);
+    border-left: 5px solid var(--secondary-color);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    box-shadow: var(--box-shadow);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .navbar-nav { flex-direction: column; }
+    .hero-section { height: 200px; font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <ul class="navbar-nav">
+        <li class="nav-item"><a href="#" class="nav-link active" data-target="home">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link" data-target="contact">Contact</a></li>
+        <li class="nav-item"><a href="#" class="nav-link" data-target="feedback">Feedback</a></li>
+        <li class="nav-item"><a href="#" class="nav-link" data-target="reservation">Reservation</a></li>
+        <li class="nav-item"><a href="#" class="nav-link" data-target="email">Email Check</a></li>
+    </ul>
+</nav>
+
+<!-- Home Section -->
+<section id="home" class="page-section active">
+    <div class="hero-section">
+        <div class="hero-text">Welcome to Café de Palacio</div>
     </div>
+</section>
 
-   <!-- Embedded Location Map -->
-                <div class="col-md-6">
-                    <h4 class="mb-3">Visit Us at Our Location</h4>
-                    <div class="ratio ratio-4x3">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d549.0283242405188!2d120.98937381053494!3d14.595799880638976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9f64e3e10c7%3A0xe9a859a1a53fd908!2s438%20J%20Nepomuceno%20St%2C%20Quiapo%2C%20Manila%2C%201001%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1759734846899!5m2!1sen!2sph"
-                            allowfullscreen=""
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Contact Section -->
+<section id="contact" class="page-section">
+    <h2>Contact Us</h2>
+    <form id="contactForm">
+        <label>Name:</label>
+        <input type="text" id="contactName" placeholder="Your name" required>
+        <label>Message:</label>
+        <textarea id="contactMessage" rows="4" placeholder="Your message" required></textarea>
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+    <h3>Submitted Messages:</h3>
+    <div id="contactList"></div>
+</section>
 
-    <footer>
-    <p>&copy; 2025 Café de Palacio </p>
-  </footer>
+<!-- Feedback Section -->
+<section id="feedback" class="page-section">
+    <h2>Feedback</h2>
+    <form id="feedbackForm">
+        <label>Name:</label>
+        <input type="text" id="feedbackName" placeholder="Your name" required>
+        <label>Email:</label>
+        <input type="email" id="feedbackEmail" placeholder="Your email" required>
+        <label>Message:</label>
+        <textarea id="feedbackMessage" rows="4" placeholder="Your feedback" required></textarea>
+        <button type="submit" class="submit-btn">Submit Feedback</button>
+    </form>
+    <h3>Previous Feedback:</h3>
+    <div id="feedbackList"></div>
+</section>
 
+<!-- Reservation Section -->
+<section id="reservation" class="page-section">
+    <h2>Reservation</h2>
+    <form id="reservationForm">
+        <label>Name:</label>
+        <input type="text" id="resName" placeholder="Your name" required>
+        <label>Date:</label>
+        <input type="date" id="resDate" required>
+        <label>Time:</label>
+        <input type="time" id="resTime" required>
+        <label>Guests:</label>
+        <input type="number" id="resGuests" min="1" placeholder="Number of guests" required>
+        <button type="submit" class="submit-btn">Submit Reservation</button>
+    </form>
+    <h3>Reservations:</h3>
+    <div id="reservationList"></div>
+</section>
+
+<!-- Email Check Section -->
+<section id="email" class="page-section">
+    <h2>Email Check</h2>
+    <form id="emailForm">
+        <label>Email:</label>
+        <input type="email" id="emailInput" placeholder="Enter your email" required>
+        <button type="submit" class="submit-btn">Check Email</button>
+    </form>
+    <div id="emailStatus"></div>
+</section>
+
+<script>
+// Section Navigation
+const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('.page-section');
+
+navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        const target = link.dataset.target;
+        sections.forEach(sec => sec.classList.remove('active'));
+        document.getElementById(target).classList.add('active');
+    });
+});
+
+// ---------------- CONTACT ----------------
+let contacts = JSON.parse(localStorage.getItem('contacts')) || [];
+const contactForm = document.getElementById('contactForm');
+const contactList = document.getElementById('contactList');
+
+contactForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('contactName').value.trim();
+    const message = document.getElementById('contactMessage').value.trim();
+    if (name && message) {
+        contacts.push({name, message});
+        localStorage.setItem('contacts', JSON.stringify(contacts));
+        displayContacts();
+        contactForm.reset();
+    }
+});
+
+function displayContacts() {
+    contactList.innerHTML = '';
+    if (contacts.length === 0) contactList.innerHTML = '<p><em>No messages yet.</em></p>';
+    contacts.forEach((c, i) => {
+        const div = document.createElement('div');
+        div.className = 'message';
+        div.innerHTML = `<strong>${i+1}. ${c.name}</strong><br>${c.message}`;
+        contactList.appendChild(div);
+    });
+}
+displayContacts();
+
+// ---------------- FEEDBACK ----------------
+let feedbacks = JSON.parse(localStorage.getItem('feedbacks')) || [];
+const feedbackForm = document.getElementById('feedbackForm');
+const feedbackList = document.getElementById('feedbackList');
+
+feedbackForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('feedbackName').value.trim();
+    const email = document.getElementById('feedbackEmail').value.trim();
+    const message = document.getElementById('feedbackMessage').value.trim();
+    if (!name || !email.includes('@') || message.length < 5) {
+        alert('Please provide valid feedback!');
+        return;
+    }
+    feedbacks.push({name,email,message});
+    localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+    displayFeedbacks();
+    feedbackForm.reset();
+});
+
+function displayFeedbacks() {
+    feedbackList.innerHTML = '';
+    if(feedbacks.length===0) feedbackList.innerHTML='<p><em>No feedback yet.</em></p>';
+    feedbacks.forEach((f,i)=>{
+        const div = document.createElement('div');
+        div.className='feedback-entry';
+        div.innerHTML=`<strong>${i+1}. ${f.name} (${f.email})</strong><br>${f.message}`;
+        feedbackList.appendChild(div);
+    });
+}
+displayFeedbacks();
+
+// ---------------- RESERVATION ----------------
+let reservations = JSON.parse(localStorage.getItem('reservations')) || [];
+const resForm = document.getElementById('reservationForm');
+const resList = document.getElementById('reservationList');
+
+resForm.addEventListener('submit', e=>{
+    e.preventDefault();
+    const name = document.getElementById('resName').value.trim();
+    const date = document.getElementById('resDate').value;
+    const time = document.getElementById('resTime').value;
+    const guests = document.getElementById('resGuests').value;
+    if(!name || !date || !time || !guests){
+        alert('Please fill all fields!');
+        return;
+    }
+    reservations.push({name,date,time,guests});
+    localStorage.setItem('reservations', JSON.stringify(reservations));
+    displayReservations();
+    resForm.reset();
+});
+
+function displayReservations(){
+    resList.innerHTML='';
+    if(reservations.length===0) resList.innerHTML='<p><em>No reservations yet.</em></p>';
+    reservations.forEach((r,i)=>{
+        const div=document.createElement('div');
+        div.className='reservation-entry';
+        div.innerHTML=`<strong>${i+1}. ${r.name}</strong> - ${r.date} ${r.time} - Guests: ${r.guests}`;
+        resList.appendChild(div);
+    });
+}
+displayReservations();
+
+// ---------------- EMAIL CHECK ----------------
+const emailForm = document.getElementById('emailForm');
+const emailInput = document.getElementById('emailInput');
+const emailStatus = document.getElementById('emailStatus');
+
+emailForm.addEventListener('submit', e=>{
+    e.preventDefault();
+    const email = emailInput.value.trim();
+    if(email.includes('@') && email.includes('.')){
+        emailStatus.innerHTML='<div class="email-status" style="border-left-color: var(--primary-color)">Email accepted!</div>';
+    } else {
+        emailStatus.innerHTML='<div class="email-status" style="border-left-color: red">Invalid email!</div>';
+    }
+});
+</script>
 </body>
 </html>
