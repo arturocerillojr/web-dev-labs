@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activity 6 | Visual Wireframe to Code</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f8f9fa;
+    }
+    h2 {
+      color: #333;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 340px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 6px 0;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #clearBtn {
+      background-color: #dc3545;
+    }
+    #clearBtn:hover {
+      background-color: #a71d2a;
+    }
+    #message {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    #reservations {
+      margin-top: 30px;
+    }
+    .reservation-entry {
+      background: white;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .timestamp {
+      font-size: 0.9em;
+      color: #666;
+    }
+    .error {
+      color: #d9534f;
+    }
+    .success {
+      color: #28a745;
+    }
+    .action-btn {
+      background-color: #17a2b8;
+      color: white;
+      border: none;
+      padding: 5px 8px;
+      margin-right: 6px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+    .delete-btn {
+      background-color: #dc3545;
+    }
+    .delete-btn:hover {
+      background-color: #a71d2a;
+    }
+    .action-btn:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <h2>Dinner Reservation</h2>
+  <form id="reservationForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required>
+
+    <label for="date">Date:</label>
+    <input type="date" id="date" required>
+
+    <label for="time">Time:</label>
+    <input type="time" id="time" required>
+
+    <label for="guests">Guests:</label>
+    <input type="number" id="guests" min="1" required>
+
+    <button type="submit" id="submitBtn">Submit</button>
+    <button type="button" id="clearBtn">Clear All</button>
+  </form>
+
+  <div id="message"></div>
+
+  <div id="reservations">
+    <h3>Submitted Reservations:</h3>
+    <div id="reservationList"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('reservationForm');
+    const messageDiv = document.getElementById('message');
+    const reservationList = document.getElementById('reservationList');
+    const clearBtn = document.getElementById('clearBtn');
+    const submitBtn = document.getElementById('submitBtn');
+
+    // Load reservations from localStorage
+    let reservations = JSON.parse(localStorage.getItem('reservations')) || [];
+    let editIndex = null; // Tracks which reservation is being edited
+
+    // Display existing reservations
+    displayReservations();
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const date = document.getElementById('date').value.trim();
+      const time = document.getElementById('time').value.trim();
+      const guests = document.getElementById('guests').value.trim();
+
+      if (!name || !date || !time || !guests) {
+        messageDiv.textContent = 'Error: Please fill in all fields.';
+        messageDiv.className = 'error';
+        return;
+      }
+
+      if (editIndex !== null) {
+        // Update existing reservation
+        reservations[editIndex] = {
+          name, date, time, guests,
+          submittedAt: reservations[editIndex].submittedAt,
+          updatedAt: new Date().toLocaleString()
+        };
+        messageDiv.textContent = 'Reservation updated successfully!';
+        messageDiv.className = 'success';
+        editIndex = null;
+        submitBtn.textContent = 'Submit';
+      } else {
+        // Create new reservation
+        const submittedAt = new Date().toLocaleString();
+        const reservation = { name, date, time, guests, submittedAt };
+        reservations.push(reservation);
+        messageDiv.textContent = 'Reservation submitted successfully!';
+        messageDiv.className = 'success';
+      }
+
+      // Save to localStorage and refresh display
+      localStorage.setItem('reservations', JSON.stringify(reservations));
+      displayReservations();
+      form.reset();
+    });
+
+    // Function to display reservations
+    function displayReservations() {
+      reservationList.innerHTML = '';
+
+      if (reservations.length === 0) {
+        reservationList.innerHTML = '<p><em>No reservations yet.</em></p>';
+        return;
+      }
+
+      reservations.forEach((res, index) => {
+        const div = document.createElement('div');
+        div.className = 'reservation-entry';
+        div.innerHTML = `
+          <strong>${index + 1}. ${res.name}</strong><br>
+          Date: ${res.date}<br>
+          Time: ${res.time}<br>
+          Guests: ${res.guests}<br>
+          <span class="timestamp">
+            Submitted at: ${res.submittedAt}
+            ${res.updatedAt ? `<br>Updated at: ${res.updatedAt}` : ''}
+          </span>
+          <div style="margin-top:8px;">
+            <button class="action-btn" onclick="editReservation(${index})">Edit</button>
+            <button class="action-btn delete-btn" onclick="deleteReservation(${index})">Delete</button>
+          </div>
+        `;
+        reservationList.appendChild(div);
+      });
+    }
+
+    // Edit reservation
+    window.editReservation = function(index) {
+      const res = reservations[index];
+      document.getElementById('name').value = res.name;
+      document.getElementById('date').value = res.date;
+      document.getElementById('time').value = res.time;
+      document.getElementById('guests').value = res.guests;
+      editIndex = index;
+      submitBtn.textContent = 'Update';
+      messageDiv.textContent = 'Editing reservation...';
+      messageDiv.className = 'success';
+    };
+
+    // Delete reservation
+    window.deleteReservation = function(index) {
+      if (confirm('Are you sure you want to delete this reservation?')) {
+        reservations.splice(index, 1);
+        localStorage.setItem('reservations', JSON.stringify(reservations));
+        displayReservations();
+        messageDiv.textContent = 'Reservation deleted.';
+        messageDiv.className = 'error';
+      }
+    };
+
+    // Clear all reservations
+    clearBtn.addEventListener('click', function() {
+      if (reservations.length === 0) {
+        alert('No reservations to clear.');
+        return;
+      }
+      if (confirm('Are you sure you want to clear all reservations?')) {
+        reservations = [];
+        localStorage.removeItem('reservations');
+        displayReservations();
+        messageDiv.textContent = 'All reservations cleared.';
+        messageDiv.className = 'error';
+      }
+    });
+  </script>
+</body>
+</html>
