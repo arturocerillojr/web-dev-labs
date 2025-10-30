@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Activity 2 | Error Identification </title>
+</head>
+<body>
+
+    <form onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name">
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Function to validate a form field
+        function validateForm() {
+            let name = document.getElementById("name").value;
+
+            // Check if the name field is empty
+            if (name === "") {
+                alert("Please enter your name.");
+                // IMPORTANT: Return false to prevent the form from submitting
+                return false;
+            }
+
+            // If validation passes, the function can optionally return true
+            // or simply let the form submission proceed.
+            return true;
+        }
+    </script>
+
+</body>
+</html>
